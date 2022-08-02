@@ -1,1 +1,1 @@
-from .db import db, User, Post
+from .db import db, User, Post, Comment
