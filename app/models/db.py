@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
 
     # Relationships
     my_posts = db.relationship("Post", back_populates="owner")
-    comments = db.relationship("Comment", back_populates="user")
+    comments = db.relationship("Comment", back_populates="users")
 
     @property
     def password(self):
@@ -45,11 +45,11 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     img_url = db.Column(db.String(255))
     caption = db.Column(db.String(255))
-    user_id = db.Column(db.String, db.ForeignKey("user.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     # Relationships
     owner = db.relationship('User', back_populates='my_posts')
-    comments = db.relationship('Post', back_populates='posts')
+    comments = db.relationship('Comment', back_populates='posts')
 
     def to_dict(self):
         return {
