@@ -4,20 +4,11 @@ from flask_login import UserMixin
 
 db = SQLAlchemy()
 
-
-comments = db.Table(
-    "comments",
-    db.Column('id', db.Integer, primary_key=True, nullable=False),
-    db.Column('comment_text', db.String(255), nullable=False),
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id') nullable=False),
-    db.Column('post_id', db.Integer, db.ForeignKey('post.id') nullable=False),
-)
-
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    full_name db.Column(db.String(50), nullable=False)
+    full_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     username = db.Column(db.String(100), nullable=False, unique=True)
     profile_pic = db.Column(db.String(255))
@@ -82,9 +73,9 @@ class Comment(db.Model):
     posts = db.relationship("Post", back_populates='comments')
 
     def to_dict(self):
-    return {
-        'id': self.id,
-        'img_url': self.img_url,
-        'caption': self.caption,
-        'user_id': self.user_id
-    }
+        return {
+            'id': self.id,
+            'comment_text': self.comment_text,
+            'user_id': self.user_id,
+            'post_id': self.post_id,
+        }

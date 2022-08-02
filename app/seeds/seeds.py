@@ -1,8 +1,8 @@
-from app.models import db, User, Post, comments
+from app.models import db, User, Post, Comment
 
 
 # Adds a demo user, you can add other users here if you want
-def seed_users():
+def seed_all():
     demo = User(
         full_name='Demo User', email='demo@aa.io', username='Demo',  profile_pic= '',password='password')
     marnie = User(
@@ -36,6 +36,8 @@ def seed_users():
 # TRUNCATE Removes all the data from the table, and RESET IDENTITY
 # resets the auto incrementing primary key, CASCADE deletes any
 # dependent entities
-def undo_users():
+def undo_all():
     db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE posts RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE comments RESTART IDENTITY CASCADE;')
     db.session.commit()
