@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux'
 import { editPostThunk } from "../../store/posts";
 
 
-function CreatePost() {
+function EditPost({post}) {
     const dispatch = useDispatch()
 
     const [img_url, setImgUrl] = useState(null)
@@ -21,12 +21,13 @@ function CreatePost() {
     const handleSubmit = async(e) => {
         e.preventDefault()
 
-        const post = {
+        const editedPost = {
+            id: post.id,
             img_url,
             caption
         }
 
-        const newPost = await dispatch(editPostThunk(post))
+        const newPost = await dispatch(editPostThunk(editedPost))
     }
 
     return (
@@ -49,4 +50,4 @@ function CreatePost() {
 
 }
 
-export default CreatePost
+export default EditPost

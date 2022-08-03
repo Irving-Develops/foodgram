@@ -46,13 +46,12 @@ def upload_post():
 def edit_post(id):
 
     post = Post.query.get(id)
-    print("\n", "post in edit",  post)
-    print("\n", "request in edit", request)
 
     if "img_url" not in request.files:
         return {"errors": "image required"}, 400
 
-        img_url = request.files["img_url"]
+    print("\n +++++++ test1 ++++++ \n")
+    img_url = request.files["img_url"]
 
     if not allowed_file(img_url.filename):
         return {"errors": "file type not permitted"}, 400
@@ -60,7 +59,8 @@ def edit_post(id):
     img_url.filename = get_unique_filename(img_url.filename)
     upload = upload_file_to_s3(img_url)
 
-
+    print("\n new img_url=======>", img_url.filename)
+    print("\n upload =======>", upload)
     if "url" not in upload:
     # if the dictionary doesn't have a url key
     # it means that there was an error when we tried to upload
@@ -68,3 +68,17 @@ def edit_post(id):
         return upload, 400
 
     url = upload["url"]
+
+    post.img_url = url
+    post.caption = request.form.get('caption')
+    db.session.commit()
+    return post.to_dict()
+
+
+
+@post_routes.route('/<int:id>', methods=['DELETE'])
+def delete_booking(id):
+    post = Post.query.get(id)
+    db.session.delete(post)
+    db.session.commit()
+    return post.to_dict()

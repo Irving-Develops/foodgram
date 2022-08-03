@@ -38,11 +38,9 @@ export const getPostsThunk = () => async(dispatch) => {
 export const addPostThunk = (post) => async(dispatch) => {
     const {img_url, caption} = post
 
-    console.log(post, "post in add thunk")
     const formData = new FormData()
     formData.append('img_url', img_url)
     formData.append('caption', caption)
-    console.log(formData, "data in thunk")
 
     const res = await fetch('/api/posts', {
         method: "POST",
@@ -59,13 +57,36 @@ export const addPostThunk = (post) => async(dispatch) => {
 }
 
 export const editPostThunk= (post) => async(dispatch) => {
-    const res = await fetch(`/api/posts/${data.id}`, {
-    method: 'PUT',
-    body: formData
-  })
-  if (res.ok) {
-    const post = await res.json();
-    dispatch(editReview(post));
+    const {id, img_url, caption} = post
+    console.log(post, "post in add thunk")
+    const formData = new FormData()
+    formData.append('img_url', img_url)
+    formData.append('caption', caption)
+    
+    const res = await fetch(`/api/posts/${id}`, {
+        method: 'PUT',
+        body: formData
+    })
+    if (res.ok) {
+        const post = await res.json();
+        dispatch(editPost(post));
+        return post;
+    }
+    else {
+        const err = await res.json();
+        throw err;
+    }
+}
+
+export const deletePostThunk = (post) => async (dispatch) => {
+    const {id} = post
+console.log("\n in delete", post, id)
+  const response = await fetch(`/api/posts/${post.post.id}`, {
+    method: 'DELETE',
+  });
+  if (response.ok) {
+    await response.json();
+    dispatch(deletePost(post.post));
     return post;
   }
   else {
@@ -78,10 +99,17 @@ export default function spotReducer(state = {}, action){
     let newState = {...state} 
     switch (action.type){
         case GET_POSTS:
+            console.log("\n in reducer ===>", action.posts[0].id)
             action.posts.forEach((post) => newState[post.id] = post);
         return newState
         case ADD_POST:
             newState[action.post.id] = action.post;
+        return newState;
+        case EDIT_POST:
+            newState[action.post.id] = action.post;
+        return newState;
+        case DELETE_POST:
+          delete newState[action.post.id];
         return newState;
     default:
         return state;

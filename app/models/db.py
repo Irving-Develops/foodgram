@@ -49,7 +49,7 @@ class Post(db.Model):
 
     # Relationships
     owner = db.relationship('User', back_populates='my_posts')
-    comments = db.relationship('Comment', back_populates='posts')
+    comments = db.relationship('Comment', back_populates='posts', cascade="all, delete")
 
     def to_dict(self):
         return {

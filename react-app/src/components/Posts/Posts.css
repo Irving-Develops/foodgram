@@ -1,0 +1,13 @@
+.post-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-wrapper {
+    border: 1px solid black;
+    margin-bottom: 50px;
+}
+
+.post img {
+    width: 100px;
+}

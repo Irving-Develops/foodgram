@@ -2,6 +2,9 @@ import React, {useEffect} from "react"
 import {useDispatch, useSelector} from 'react-redux'
 import { getPostsThunk } from "../../store/posts"
 import CreatePost from "./CreatePost"
+import EditPost from "./EditPost"
+import DeletePost from "./DeletePost"
+import './Posts.css'
 
 function AllPosts(){
     const dispatch = useDispatch()
@@ -27,6 +30,10 @@ function AllPosts(){
                     </div>
                     <div className="caption">
                         <p>{post.caption}</p>
+                    </div>
+                    <div className="button-container">
+                        <EditPost post={post} />
+                        <DeletePost post={post} />
                     </div>
                 </div>
             ))}
