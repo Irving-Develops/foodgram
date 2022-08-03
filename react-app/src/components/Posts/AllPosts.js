@@ -1,6 +1,7 @@
 import React, {useEffect} from "react"
 import {useDispatch, useSelector} from 'react-redux'
 import { getPostsThunk } from "../../store/posts"
+import CreatePost from "./CreatePost"
 
 function AllPosts(){
     const dispatch = useDispatch()
@@ -29,6 +30,7 @@ function AllPosts(){
                     </div>
                 </div>
             ))}
+            <CreatePost />
         </div>
     )
 }

@@ -15,18 +15,20 @@ def get_posts():
 @post_routes.route("", methods=["POST"])
 @login_required
 def upload_post():
-    if "post" not in request.files:
-        return {"errors": "post required"}, 400
 
-    post = request.files["post"]
+    if "img_url" not in request.files:
+        return {"errors": "image required"}, 400
 
-    if not allowed_file(post.filename):
+    img_url = request.files["img_url"]
+
+    if not allowed_file(img_url.filename):
         return {"errors": "file type not permitted"}, 400
     
-    post.filename = get_unique_filename(post.filename)
+    img_url.filename = get_unique_filename(img_url.filename)
 
-    upload = upload_file_to_s3(post)
-
+    print( img_url.filename)
+    upload = upload_file_to_s3(img_url)
+    print("upload ====>", upload)
     if "url" not in upload:
         # if the dictionary doesn't have a url key
         # it means that there was an error when we tried to upload
@@ -35,7 +37,12 @@ def upload_post():
 
     url = upload["url"]
     # flask_login allows us to get the current user from the request
-    new_post = Post(user=current_user, url=url)
+    new_post = Post(user=current_user, url=url, caption=request.form.get('caption'))
+    print(new_post, "n/ new post")
     db.session.add(new_post)
     db.session.commit()
     return {"url": url}
+
+
+
+
