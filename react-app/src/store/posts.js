@@ -58,6 +58,22 @@ export const addPostThunk = (post) => async(dispatch) => {
     }
 }
 
+export const editPostThunk= (post) => async(dispatch) => {
+    const res = await fetch(`/api/posts/${data.id}`, {
+    method: 'PUT',
+    body: formData
+  })
+  if (res.ok) {
+    const post = await res.json();
+    dispatch(editReview(post));
+    return post;
+  }
+  else {
+    const err = await response.json();
+    throw err;
+  }
+}
+
 export default function spotReducer(state = {}, action){
     let newState = {...state} 
     switch (action.type){
