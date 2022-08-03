@@ -39,3 +39,4 @@ def upload_post():
     db.session.add(new_post)
     db.session.commit()
     return {"url": url}
+    print(test)
