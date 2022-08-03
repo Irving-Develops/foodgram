@@ -4,7 +4,8 @@ import os
 import uuid
 
 BUCKET_NAME = os.environ.get("S3_BUCKET")
-S3_LOCATION = f"https://food-gram.s3.us-east-2.amazonaws.com/images/"
+print(BUCKET_NAME)
+S3_LOCATION = f"http://{BUCKET_NAME}.s3.amazonaws.com/"
 ALLOWED_EXTENSIONS = {"pdf", "png", "jpg", "jpeg", "gif"}
 
 s3 = boto3.client(
@@ -26,6 +27,9 @@ def get_unique_filename(filename):
 
 
 def upload_file_to_s3(file, acl="public-read"):
+    print("\n", "file ====>", file)
+    print("\n", "bucket", BUCKET_NAME)
+    print("\n", S3_LOCATION)
     try:
         s3.upload_fileobj(
             file,

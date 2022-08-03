@@ -51,7 +51,9 @@ export const addPostThunk = (post) => async(dispatch) => {
     });
     if (res.ok) {
         const post = await res.json();
+        console.log("\n post in thunk ===>", post)
         dispatch(addPost(post))
+        return post
         // history.push("/images");
     }
 }

@@ -26,9 +26,9 @@ def upload_post():
     
     img_url.filename = get_unique_filename(img_url.filename)
 
-    print( img_url.filename)
+    print("\n", "filename =====>", img_url.filename)
     upload = upload_file_to_s3(img_url)
-    print("upload ====>", upload)
+    print("\n", "upload ====>", upload)
     if "url" not in upload:
         # if the dictionary doesn't have a url key
         # it means that there was an error when we tried to upload
@@ -37,8 +37,7 @@ def upload_post():
 
     url = upload["url"]
     # flask_login allows us to get the current user from the request
-    new_post = Post(user=current_user, url=url, caption=request.form.get('caption'))
-    print(new_post, "n/ new post")
+    new_post = Post(img_url=url, caption=request.form.get('caption'), user_id=current_user.id)
     db.session.add(new_post)
     db.session.commit()
-    return {"url": url}
+    return new_post.to_dict()
