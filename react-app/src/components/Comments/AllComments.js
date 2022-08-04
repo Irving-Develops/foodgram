@@ -4,6 +4,7 @@ import { getCommentsThunk } from "../../store/comments"
 import CreateComment from "./CreateComment"
 import DeleteComment from "./DeleteComment"
 import EditComment from "./EditComment"
+import './Comments.css'
 
 function AllComments({postId}) {
     const dispatch = useDispatch()

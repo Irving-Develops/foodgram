@@ -31,6 +31,7 @@ function CreatePost() {
 
     return (
         <form onSubmit={handleSubmit}>
+            <label>Create a Post: </label>
             <input
               type="file"
               accept="image/*"
