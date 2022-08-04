@@ -1,8 +1,12 @@
-.navbar {
+#navbar {
     display: flex;
-    background-color: red;
+    background-color: white;
 }
 
-.navlinks img{
+#navlinks img{
     width: 20px;
 }
+#navlinks li{
+    display: inline-block;
+}
+
