@@ -9,7 +9,5 @@ def caption_length(form, field):
 
 
 class PostForm(FlaskForm):
-
-
     img_url = StringField('image url', validators=[DataRequired()])
     caption = StringField('caption', validators=[caption_length])

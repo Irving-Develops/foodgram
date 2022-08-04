@@ -95,11 +95,10 @@ console.log("\n in delete", post, id)
   }
 }
 
-export default function spotReducer(state = {}, action){
+export default function postReducer(state = {}, action){
     let newState = {...state} 
     switch (action.type){
         case GET_POSTS:
-            console.log("\n in reducer ===>", action.posts[0].id)
             action.posts.forEach((post) => newState[post.id] = post);
         return newState
         case ADD_POST:

@@ -50,7 +50,6 @@ def edit_post(id):
     if "img_url" not in request.files:
         return {"errors": "image required"}, 400
 
-    print("\n +++++++ test1 ++++++ \n")
     img_url = request.files["img_url"]
 
     if not allowed_file(img_url.filename):
@@ -75,7 +74,7 @@ def edit_post(id):
 
 
 @post_routes.route('/<int:id>', methods=['DELETE'])
-def delete_booking(id):
+def delete_post(id):
     post = Post.query.get(id)
     db.session.delete(post)
     db.session.commit()
