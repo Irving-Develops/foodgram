@@ -70,7 +70,8 @@ class Post(db.Model):
             'id': self.id,
             'img_url': self.img_url,
             'caption': self.caption,
-            'user_id': self.user_id
+            'user_id': self.user_id,
+            'created_at': self.created_at
         }
 
 
@@ -94,4 +95,5 @@ class Comment(db.Model):
             'comment_text': self.comment_text,
             'user_id': self.user_id,
             'post_id': self.post_id,
+            'created_at': self.created_at
         }
