@@ -1,12 +1,14 @@
 import React, {useState} from "react";
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import { addCommentThunk } from "../../store/comments";
 
 function CreateComment(postId) {
     const dispatch = useDispatch()
 
     const [comment_text, setCommentText] = useState('')
+    const user = useSelector(state => state.session.user.id)
 
+    console.log(user, "user id")
     const updateCommentText = (e) => {
         const comment_text = e.target.value
         setCommentText(comment_text)
@@ -17,7 +19,8 @@ function CreateComment(postId) {
 
         const comment = {
             comment_text,
-            post_id: postId
+            post_id: postId.postId,
+            user_id: user
         }
 
         const newComment = await dispatch(addCommentThunk(comment))
