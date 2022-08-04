@@ -33,35 +33,48 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
+    <div id="full-screen">
+      <div id="login-container">
+        <div id="login-image">
+          <img src="https://www.instagram.com/static/images/homepage/phones/home-phones.png/1dc085cdb87d.png" alt="phone" />
+        </div>
+        <div id="login-form">
+          <form onSubmit={onLogin} id="form">
+            <div>
+              {errors.map((error, ind) => (
+                <div key={ind}>{error}</div>
+              ))}
+            </div>
+            <div>
+              <input
+                name='email'
+                type='text'
+                placeholder='Email'
+                value={email}
+                onChange={updateEmail}
+              />
+            </div>
+            <div>
+              <input
+                name='password'
+                type='password'
+                placeholder='Password'
+                value={password}
+                onChange={updatePassword}
+              />
+            </div>
+            <div className='button-blue'>
+              <button type='submit'>Login</button>
+              <DemoUser />
+            </div>
+          </form>
+          <div id="sign-up">
+            sign up
+          </div>
+        </div>
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
-        <input
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor='password'>Password</label>
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type='submit'>Login</button>
-        <DemoUser />
-      </div>
-    </form>
+
+    </div>
   );
 };
 
