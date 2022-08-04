@@ -1,10 +1,12 @@
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+import datetime
+
 
 db = SQLAlchemy()
 
-likes = Table(
+likes = db.Table(
     "likes",
     db.Model.metadata,
     db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
@@ -24,7 +26,7 @@ class User(db.Model, UserMixin):
     # Relationships
     my_posts = db.relationship("Post", back_populates="owner")
     comments = db.relationship("Comment", back_populates="users")
-    likes = db.relationship('Like', back_populates='posts')
+    liker = db.relationship("Post", secondary=likes, back_populates="likes")
 
 
     @property
@@ -61,7 +63,7 @@ class Post(db.Model):
     # Relationships
     owner = db.relationship('User', back_populates='my_posts')
     comments = db.relationship('Comment', back_populates='posts', cascade="all, delete")
-    likes = db.relationship('Like', back_populates='posts', cascade="all, delete")
+    likes = db.relationship("User", secondary=likes, back_populates="liker")
 
     def to_dict(self):
         return {
