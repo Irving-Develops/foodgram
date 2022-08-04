@@ -4,6 +4,13 @@ from flask_login import UserMixin
 
 db = SQLAlchemy()
 
+likes = Table(
+    "likes",
+    db.Model.metadata,
+    db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
+    db.Column("post_id", db.Integer, db.ForeignKey("posts.id"), primary_key=True),
+)
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -17,6 +24,8 @@ class User(db.Model, UserMixin):
     # Relationships
     my_posts = db.relationship("Post", back_populates="owner")
     comments = db.relationship("Comment", back_populates="users")
+    likes = db.relationship('Like', back_populates='posts')
+
 
     @property
     def password(self):
@@ -46,10 +55,13 @@ class Post(db.Model):
     img_url = db.Column(db.String(255))
     caption = db.Column(db.String(255))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+
 
     # Relationships
     owner = db.relationship('User', back_populates='my_posts')
     comments = db.relationship('Comment', back_populates='posts', cascade="all, delete")
+    likes = db.relationship('Like', back_populates='posts', cascade="all, delete")
 
     def to_dict(self):
         return {
@@ -67,6 +79,8 @@ class Comment(db.Model):
     comment_text = db.Column(db.String(255), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+
 
     # Relationships
     users = db.relationship("User", back_populates='comments')
