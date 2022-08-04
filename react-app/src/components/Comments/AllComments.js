@@ -2,6 +2,8 @@ import React, {useEffect} from "react"
 import {useDispatch, useSelector} from 'react-redux'
 import { getCommentsThunk } from "../../store/comments"
 import CreateComment from "./CreateComment"
+import DeleteComment from "./DeleteComment"
+import EditComment from "./EditComment"
 
 function AllComments({postId}) {
     const dispatch = useDispatch()
@@ -19,9 +21,13 @@ function AllComments({postId}) {
 
     if(!comments) return null
     return (
-        <div className="comment-wrapper">
+        <div className="comment-container">
             {commentsArr && commentsArr.map(comment => (
-                <p id={comment.id}>{comment.comment_text}</p>
+                <div className="comment-wrapper">
+                    <p id={comment.id}>{comment.comment_text}</p>
+                    <EditComment comment={comment} />
+                    <DeleteComment comment={comment} />
+                </div>
             ))}
         </div>
     )

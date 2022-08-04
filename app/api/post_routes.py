@@ -50,7 +50,6 @@ def edit_post(id):
     if "img_url" not in request.files:
         return {"errors": "image required"}, 400
 
-    print("\n +++++++ test1 ++++++ \n")
     img_url = request.files["img_url"]
 
     if not allowed_file(img_url.filename):

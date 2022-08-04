@@ -55,6 +55,41 @@ export const addCommentThunk = (data) => async(dispatch) => {
         throw err;
     }
 }
+export const editCommentThunk= (comment) => async(dispatch) => {
+    console.log("comment in thunk", comment)
+    const res = await fetch(`/api/comments/${comment.id}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(comment)
+    })
+    console.log(res)
+    if (res.ok) {
+        const comment = await res.json();
+        dispatch(editComment(comment));
+        return comment;
+    }
+    else {
+        const err = await res.json();
+        throw err;
+    }
+}
+
+export const deleteCommentThunk = (comment) => async (dispatch) => {
+    const {id} = comment
+console.log("\n in delete", comment, id)
+  const response = await fetch(`/api/comments/${comment.comment.id}`, {
+    method: 'DELETE',
+  });
+  if (response.ok) {
+    await response.json();
+    dispatch(deleteComment(comment.comment));
+    return comment;
+  }
+  else {
+    const err = await response.json();
+    throw err;
+  }
+}
 
 export default function commentReducer(state = {}, action){
     let newState = {...state} 

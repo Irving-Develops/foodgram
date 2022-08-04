@@ -12,6 +12,7 @@ def get_comments():
     comments = Comment.query.all()
     return {'comments': [comment.to_dict() for comment in comments]}
 
+
 @comment_routes.route("", methods=['POST'])
 @login_required
 def add_comment():
@@ -35,8 +36,8 @@ def add_comment():
 @comment_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def edit_comment(id):
-
     comment = Comment.query.get(id)
+    print(comment, "\n inside put \n")
     form = CommentForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -45,10 +46,11 @@ def edit_comment(id):
     
         db.session.commit()
         return comment.to_dict()
-    # return { 'errors' : validation_errors_to_error_messages(form.errors) }, 400
+    return { 'errors' : validation_errors_to_error_messages(form.errors) }, 400
     
 
 @comment_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
 def delete_comment(id):
     comment = Comment.query.get(id)
     db.session.delete(comment)
