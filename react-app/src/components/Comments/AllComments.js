@@ -23,9 +23,10 @@ function AllComments({postId}) {
     if(!comments) return null
     return (
         <div className="comment-container">
-            {commentsArr && commentsArr.map(comment => (
+            {commentsArr && commentsArr.slice(0).reverse().map(comment => (
                 <div className="comment-wrapper">
                     <p id={comment.id}>{comment.comment_text}</p>
+                    <p>{comment.created_at}</p>
                     <EditComment comment={comment} />
                     <DeleteComment comment={comment} />
                 </div>
@@ -33,5 +34,6 @@ function AllComments({postId}) {
         </div>
     )
 }
+
 
 export default AllComments

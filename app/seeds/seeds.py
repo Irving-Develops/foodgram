@@ -1,4 +1,4 @@
-from app.models import db, User, Post, Comment
+from app.models import db, User, Post, Comment, likes
 
 
 # Adds a demo user, you can add other users here if you want
@@ -17,6 +17,17 @@ def seed_all():
     comment1 = Comment(comment_text="Those tacos are so good!", user_id=2, post_id=1)
     comment2 = Comment(comment_text="How long to get a reservation? I heard it was over two years!!", user_id=1, post_id=2)
     comment3 = Comment(comment_text="Where is this?", user_id=1, post_id=3)
+
+    post1.likes.append(demo)
+    post1.likes.append(marnie)
+    post1.likes.append(bobbie)
+    post2.likes.append(demo)
+    post2.likes.append(marnie)
+    post2.likes.append(bobbie)
+    post3.likes.append(demo)
+    post3.likes.append(marnie)
+    post3.likes.append(bobbie)
+
 
     db.session.add(demo)
     db.session.add(marnie)
