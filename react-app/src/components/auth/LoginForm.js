@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { login } from '../../store/session';
 import DemoUser from './Demo';
 import './Login.css'
@@ -40,37 +40,41 @@ const LoginForm = () => {
         </div>
         <div id="login-form">
           <form onSubmit={onLogin} id="form">
-            <h1>Foodgram</h1>
-            <div>
-              {errors.map((error, ind) => (
-                <div key={ind}>{error}</div>
-              ))}
-            </div>
-            <div className='input-field'>
-              <input
-                name='email'
-                type='text'
-                placeholder='Email'
-                value={email}
-                onChange={updateEmail}
-              />
-            </div>
-            <div className='input-field'>
-              <input
-                name='password'
-                type='password'
-                placeholder='Password'
-                value={password}
-                onChange={updatePassword}
-              />
-            </div>
-            <div className='button-blue'>
-              <button type='submit'>Login</button>
-              <DemoUser />
+            <div id="content">
+              <h1>Foodgram</h1>
+              <div>
+                {errors.map((error, ind) => (
+                  <div key={ind}>{error}</div>
+                ))}
+              </div>
+              <div className='input-field'>
+                <input
+                  name='email'
+                  type='text'
+                  placeholder='Email'
+                  value={email}
+                  onChange={updateEmail}
+                />
+              </div>
+              <div className='input-field'>
+                <input
+                  name='password'
+                  type='password'
+                  placeholder='Password'
+                  value={password}
+                  onChange={updatePassword}
+                />
+              </div>
+              <div className='button-blue'>
+                <button type='submit'>Login</button>
+                <h4>OR</h4>
+                <DemoUser />
+              </div>
+
             </div>
           </form>
           <div id="sign-up">
-            sign up
+            <span>Dont have an account? <NavLink to='/sign-up'>sign up</NavLink></span>
           </div>
         </div>
       </div>
