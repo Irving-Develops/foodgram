@@ -40,12 +40,13 @@ const LoginForm = () => {
         </div>
         <div id="login-form">
           <form onSubmit={onLogin} id="form">
+            <h1>Foodgram</h1>
             <div>
               {errors.map((error, ind) => (
                 <div key={ind}>{error}</div>
               ))}
             </div>
-            <div>
+            <div className='input-field'>
               <input
                 name='email'
                 type='text'
@@ -54,7 +55,7 @@ const LoginForm = () => {
                 onChange={updateEmail}
               />
             </div>
-            <div>
+            <div className='input-field'>
               <input
                 name='password'
                 type='password'
