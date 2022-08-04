@@ -4,6 +4,8 @@ import { getPostsThunk } from "../../store/posts"
 import CreatePost from "./CreatePost"
 import EditPost from "./EditPost"
 import DeletePost from "./DeletePost"
+import AllComments from "../Comments/AllComments"
+import CreateComment from "../Comments/CreateComment"
 import './Posts.css'
 
 function AllPosts(){
@@ -14,7 +16,6 @@ function AllPosts(){
     if(posts){
        postsArr = Object.values(posts)
     }
-    console.log(postsArr, "posts")
 
     useEffect(()=> {
         dispatch(getPostsThunk())
@@ -34,6 +35,12 @@ function AllPosts(){
                     <div className="button-container">
                         <EditPost post={post} />
                         <DeletePost post={post} />
+                    </div>
+                    <div className="comments-container"> 
+                        <AllComments postId={post.id} />
+                    </div>
+                    <div className="create-comment-container">
+                        <CreateComment postId={post.id} />
                     </div>
                 </div>
             ))}
