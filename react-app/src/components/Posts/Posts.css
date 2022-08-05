@@ -9,5 +9,6 @@
 }
 
 .post img {
-    width: 100px;
+    width: auto;
+    height: 470px;
 }

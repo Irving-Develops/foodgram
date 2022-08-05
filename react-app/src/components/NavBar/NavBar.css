@@ -9,6 +9,16 @@
 #navlinks li{
     display: inline-block;
 }
+#logo {
+    display: flex;
+    align-items: center;
+}
+#logo h2{
+    font-size: 32px;
+    margin: 0px;
+    color: var(--text-color);
+    font-family: 'Billabong', sans-serif; 
+}
 svg{
     color: rgb(38, 38, 38);
     fill: rgb(38, 38, 38);
