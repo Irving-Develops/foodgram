@@ -36,7 +36,6 @@ export const getCommentsThunk = () => async(dispatch) => {
 }
 
 export const addCommentThunk = (data) => async(dispatch) => {
-    console.log(data, "data")
     const res = await fetch('/api/comments', {
         method: 'POST',
         headers: {
@@ -44,7 +43,6 @@ export const addCommentThunk = (data) => async(dispatch) => {
         },
         body: JSON.stringify(data)
     })
-    console.log("res in thunk", res)
     if (res.ok) {
         const comment = await res.json();
         dispatch(addComment(comment));
@@ -56,13 +54,11 @@ export const addCommentThunk = (data) => async(dispatch) => {
     }
 }
 export const editCommentThunk= (comment) => async(dispatch) => {
-    console.log("comment in thunk", comment)
     const res = await fetch(`/api/comments/${comment.id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(comment)
     })
-    console.log(res)
     if (res.ok) {
         const comment = await res.json();
         dispatch(editComment(comment));
@@ -76,7 +72,6 @@ export const editCommentThunk= (comment) => async(dispatch) => {
 
 export const deleteCommentThunk = (comment) => async (dispatch) => {
     const {id} = comment
-console.log("\n in delete", comment, id)
   const response = await fetch(`/api/comments/${comment.comment.id}`, {
     method: 'DELETE',
   });

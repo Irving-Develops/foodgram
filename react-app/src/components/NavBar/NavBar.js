@@ -9,7 +9,6 @@ const NavBar = () => {
 
   const location = useLocation()
 
-  console.log("current path" , location.pathname)
   const [home, setHome] = useState(false)
   const [explore, setExplore] = useState(true)
   const [likes, setLikes] = useState(true)

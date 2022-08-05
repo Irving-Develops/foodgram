@@ -4,7 +4,6 @@ import { deletePostThunk } from "../../store/posts"
 
 const DeletePost = (post) => {
     const dispatch = useDispatch()
-    console.log(post)
     const handleDelete = async() => {
         await dispatch(deletePostThunk(post))
     }

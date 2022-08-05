@@ -49,7 +49,6 @@ export const addPostThunk = (post) => async(dispatch) => {
     });
     if (res.ok) {
         const post = await res.json();
-        console.log("\n post in thunk ===>", post)
         dispatch(addPost(post))
         return post
         // history.push("/images");
@@ -58,7 +57,6 @@ export const addPostThunk = (post) => async(dispatch) => {
 
 export const editPostThunk= (post) => async(dispatch) => {
     const {id, img_url, caption} = post
-    console.log(post, "post in add thunk")
     const formData = new FormData()
     formData.append('img_url', img_url)
     formData.append('caption', caption)
@@ -80,7 +78,6 @@ export const editPostThunk= (post) => async(dispatch) => {
 
 export const deletePostThunk = (post) => async (dispatch) => {
     const {id} = post
-console.log("\n in delete", post, id)
   const response = await fetch(`/api/posts/${post.post.id}`, {
     method: 'DELETE',
   });

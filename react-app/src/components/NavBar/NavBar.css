@@ -1,6 +1,7 @@
 #navbar {
     display: flex;
     background-color: white;
+    border: 1px solid var(--grey-border)
 }
 
 #navlinks img{

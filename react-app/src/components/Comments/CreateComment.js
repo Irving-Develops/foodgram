@@ -8,7 +8,6 @@ function CreateComment(postId) {
     const [comment_text, setCommentText] = useState('')
     const user = useSelector(state => state.session.user.id)
 
-    console.log(user, "user id")
     const updateCommentText = (e) => {
         const comment_text = e.target.value
         setCommentText(comment_text)

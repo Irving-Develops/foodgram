@@ -14,7 +14,6 @@ function AllComments({postId}) {
     if(comments){
         commentsArr = Object.values(comments).filter(comment => comment.post_id === postId)
     }
-    console.log(commentsArr, "comments Array")
 
     useEffect(() => {
         dispatch(getCommentsThunk())
