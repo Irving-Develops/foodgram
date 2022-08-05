@@ -10,13 +10,14 @@
     margin-bottom: 50px;
     width: 600px;
 }
-
+.post{
+    height: 600px;
+}
 .post img {
     width: 600px;
     height: 600px;
     object-fit: cover;
 }
-
 /* USERNAME SECTION */
 .user-container {
     display: flex;

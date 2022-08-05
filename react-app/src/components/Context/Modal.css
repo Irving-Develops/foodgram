@@ -25,11 +25,10 @@
   display: flex;
   flex-direction: column;
   background-color: white;
-  border: 1px solid var(--grey-border);
+  /* border: 1px solid var(--grey-border); */
   border-radius: 15px;
   margin: 15px 0;
-  width: 400px;
-  height: 50%;
+  /* width: 400px; */
   overflow: auto;
 }
 
@@ -43,7 +42,104 @@
 }
 
 #post-modal-buttons button{
-  width: 100%;
+  width: 400px;
   background-color: white;
   height: 48px;
+  border: none;
+}
+
+#post-modal-buttons button:hover{
+  background-color: var(--grey-button);
+}
+
+#post-modal-buttons button:nth-child(2){
+  border-top: 1px solid var(--grey-border);
+  border-bottom: 1px solid var(--grey-border);
+}
+
+.delete {
+  color: red;
+}
+
+#edit-post-modal {
+  display: flex;
+  border: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 941px;
+  /* height: 646px; */
+}
+
+#head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  border: 1px solid var(--grey-border);
+  height: 42px;
+}
+
+#caption {
+  /* border: 1px solid var(--grey-border); */
+  padding: 15px;
+  width: 100%;
+}
+
+#caption form, #caption textarea {
+  width: 100%;
+  height: 80%;
+}
+
+#caption textarea {
+  border: none;
+  outline: none;
+  resize: none;
+}
+
+#edit-post-content {
+  display: flex;
+}
+
+#caption button {
+  font-weight: bold;
+  position: relative;
+  right: -250px;
+  top: -75px;
+  border: none;
+  background-color: white;
+  color: var(--blue-button);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#empty {
+  width: 50px;
+}
+
+#cancel {
+  border: none;
+  background-color: white;
+  color: var(--text-color);
+  margin-left: 20px;
+}
+
+#edit {
+  height: 28px;
+}
+
+.user-pic-edit {
+  width: 28px;
+  height: 28px;
+}
+
+#profile-pic{
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+}
+#user-img{
+  width: 28px;
+  height: 28px;
 }

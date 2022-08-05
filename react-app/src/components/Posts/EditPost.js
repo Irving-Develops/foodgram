@@ -3,11 +3,13 @@ import {useDispatch} from 'react-redux'
 import { editPostThunk } from "../../store/posts";
 
 
-function EditPost({post}) {
+function EditPost({post, setShowModal}) {
     const dispatch = useDispatch()
 
-    const [img_url, setImgUrl] = useState(null)
-    const [caption, setCaption] = useState('')
+    const [img_url, setImgUrl] = useState(post.img_url)
+    const [caption, setCaption] = useState(post.caption)
+
+    console.log('edit img url', img_url)
 
     const updateImgUrl = (e) => {
         const img = e.target.files[0]
@@ -28,22 +30,25 @@ function EditPost({post}) {
         }
 
         const newPost = await dispatch(editPostThunk(editedPost))
+
+        setShowModal(false)
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <input
+            {/* <input
               type="file"
               accept="image/*"
               onChange={updateImgUrl}
-            />
-            <input 
+            /> */}
+            <button type="submit">Done</button>
+            <textarea 
                 type="text"
                 name="caption"
+                placeholder="Write a caption..."
                 onChange={updateCaption}
                 value={caption}
             />
-            <button type="submit">Submit</button>
             {/* {(imageLoading)&& <p>Loading...</p>} */}
         </form>
     )

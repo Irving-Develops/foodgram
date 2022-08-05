@@ -21,7 +21,7 @@ function PostUser({post}) {
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <div id="user-profile-modal">   
-                        <PostModal />
+                        <PostModal post={post} setShowModal={setShowModal}/>
                     </div>
                 </Modal>
             )}

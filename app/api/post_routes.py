@@ -47,26 +47,29 @@ def edit_post(id):
 
     post = Post.query.get(id)
 
-    if "img_url" not in request.files:
-        return {"errors": "image required"}, 400
+    # UPDATE IMAGE CODE IF I WANT TO ADD
 
-    img_url = request.files["img_url"]
+    # if "img_url" not in request.files:
+    #     return {"errors": "image required"}, 400
 
-    if not allowed_file(img_url.filename):
-        return {"errors": "file type not permitted"}, 400
+    # img_url = request.files["img_url"]
+
+    # if not allowed_file(img_url.filename):
+    #     return {"errors": "file type not permitted"}, 400
     
-    img_url.filename = get_unique_filename(img_url.filename)
-    upload = upload_file_to_s3(img_url)
+    # img_url.filename = get_unique_filename(img_url.filename)
+    # upload = upload_file_to_s3(img_url)
 
-    if "url" not in upload:
-    # if the dictionary doesn't have a url key
-    # it means that there was an error when we tried to upload
-    # so we send back that error message
-        return upload, 400
+    # if "url" not in upload:
+    # # if the dictionary doesn't have a url key
+    # # it means that there was an error when we tried to upload
+    # # so we send back that error message
+    #     return upload, 400
 
-    url = upload["url"]
+    # url = upload["url"]
 
-    post.img_url = url
+    # post.img_url = url
+
     post.caption = request.form.get('caption')
     db.session.commit()
     return post.to_dict()

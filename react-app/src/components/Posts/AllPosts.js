@@ -39,7 +39,6 @@ function AllPosts(){
                         <NavLink to={`/user/${post.user_id}`} id='owner'>{post.owner.username} </NavLink><span id="caption">{post.caption}</span>
                     </div>
                     <div className="button-container">
-                        <EditPost post={post} />
                         <DeletePost post={post} />
                     </div>
                     <div className="comments-container"> 
