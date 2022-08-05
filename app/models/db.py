@@ -71,7 +71,8 @@ class Post(db.Model):
             'img_url': self.img_url,
             'caption': self.caption,
             'user_id': self.user_id,
-            'created_at': self.created_at
+            'created_at': self.created_at,
+            'owner': self.owner.to_dict()
         }
 
 

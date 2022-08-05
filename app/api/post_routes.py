@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import db, Post
+from app.models import db, Post, User
 from flask_login import current_user, login_required
 from app.s3_helpers import (upload_file_to_s3, allowed_file, get_unique_filename)
 from sqlalchemy import desc, asc
@@ -10,7 +10,6 @@ post_routes = Blueprint("posts", __name__)
 @login_required
 def get_posts():
     posts = Post.query.all()
-    print("\n", vars(posts[0]), "posts in print \n")
     return {'posts': [post.to_dict() for post in posts]}
 
 @post_routes.route("", methods=["POST"])

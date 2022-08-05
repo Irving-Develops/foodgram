@@ -12,6 +12,8 @@ import './Posts.css'
 function AllPosts(){
     const dispatch = useDispatch()
     const posts = useSelector(state => state.posts)
+
+    console.log("posts", posts)
     let postsArr;
     
     if(posts){

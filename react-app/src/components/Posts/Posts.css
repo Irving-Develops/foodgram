@@ -8,11 +8,37 @@
     border: 1px solid var(--grey-border);
     background-color: white;
     margin-bottom: 50px;
-    width: 470px;
+    width: 600px;
 }
 
 .post img {
-    width: 470px;
-    height: 470px;
+    width: 600px;
+    height: 600px;
     object-fit: cover;
+}
+
+/* USERNAME SECTION */
+.user-container {
+    display: flex;
+    align-items: center;
+    height: 60px;
+}
+.user-img {
+    width: 42px;
+    height: 42px;
+}
+.user-img img{
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
+}
+
+.username a{
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--text-color)
+
+}
+.username a:visited{
+    color: var(--text-color)
 }
