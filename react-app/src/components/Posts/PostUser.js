@@ -1,7 +1,7 @@
 import {NavLink} from 'react-router-dom'
 import {useState} from 'react'
 import { Modal } from '../Context/Modal';
-import PostModal from '../Modals/PostModal'
+import EditPostModal from '../Modals/EditPostModal'
 
 function PostUser({post}) {
   const [showModal, setShowModal] = useState(false);
@@ -21,7 +21,7 @@ function PostUser({post}) {
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <div id="user-profile-modal">   
-                        <PostModal post={post} setShowModal={setShowModal}/>
+                        <EditPostModal post={post} setShowModal={setShowModal}/>
                     </div>
                 </Modal>
             )}

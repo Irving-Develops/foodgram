@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import EditPost from '../Posts/EditPost'
 import { Modal } from '../Context/Modal'
 
-function PostModal({post, setShowModal}) {
+function EditPostModal({post, setShowModal}) {
         const [showEditModal, setEditModal] = useState(false)
 
     return(
@@ -47,4 +47,4 @@ function PostModal({post, setShowModal}) {
     )
 }
 
-export default PostModal
+export default EditPostModal
