@@ -1,0 +1,49 @@
+
+#modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+}
+
+#modal-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#modal-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid var(--grey-border);
+  border-radius: 15px;
+  margin: 15px 0;
+  width: 400px;
+  height: 50%;
+  overflow: auto;
+}
+
+#modal-content::-webkit-scrollbar {
+  display: none;
+}
+
+#post-modal-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+#post-modal-buttons button{
+  width: 100%;
+  background-color: white;
+  height: 48px;
+}

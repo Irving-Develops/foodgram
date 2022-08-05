@@ -1,6 +1,12 @@
 import {NavLink} from 'react-router-dom'
+import {useState} from 'react'
+import { Modal } from '../Context/Modal';
+import PostModal from '../Modals/PostModal'
 
 function PostUser({post}) {
+  const [showModal, setShowModal] = useState(false);
+
+
     return (
         <div class="user-container">
             <div class='user-img'>
@@ -9,6 +15,16 @@ function PostUser({post}) {
             <div class="username">
                 <NavLink to={`/users/${post.owner.id}`}>{post.owner.username}</NavLink>
             </div>
+            <div className='drop-down'>
+                <svg onClick={() => setShowModal(true)} aria-label="More options" class="_ab6-" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><circle cx="12" cy="12" r="1.5"></circle><circle cx="6" cy="12" r="1.5"></circle><circle cx="18" cy="12" r="1.5"></circle></svg>
+            </div>
+            {showModal && (
+                <Modal onClose={() => setShowModal(false)}>
+                    <div id="user-profile-modal">   
+                        <PostModal />
+                    </div>
+                </Modal>
+            )}
         </div>
     )
 

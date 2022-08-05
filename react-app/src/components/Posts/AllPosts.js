@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from "react"
+import React, {useEffect} from "react"
+import { NavLink } from "react-router-dom"
 import {useDispatch, useSelector} from 'react-redux'
 import { getPostsThunk } from "../../store/posts"
 import CreatePost from "./CreatePost"
@@ -34,8 +35,8 @@ function AllPosts(){
                     <div className="post"> 
                         <img src={post.img_url} alt="delicious platter" />
                     </div>
-                    <div className="caption">
-                        <p>{post.caption}</p>
+                    <div className="caption-container">
+                        <NavLink to={`/user/${post.user_id}`} id='owner'>{post.owner.username} </NavLink><span id="caption">{post.caption}</span>
                     </div>
                     <div className="button-container">
                         <EditPost post={post} />

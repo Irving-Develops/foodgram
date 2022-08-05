@@ -42,3 +42,14 @@
 .username a:visited{
     color: var(--text-color)
 }
+
+/* CAPTION SECTION */
+.caption-container {
+    font-size: 14px;
+}
+
+#owner {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+}
