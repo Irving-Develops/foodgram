@@ -4,9 +4,18 @@
 }
 
 #navlinks img{
-    width: 20px;
+    width: 24px;
 }
 #navlinks li{
     display: inline-block;
 }
+svg{
+    color: rgb(38, 38, 38);
+    fill: rgb(38, 38, 38);
+    height: 24;
+    width: 24; 
+}
 
+.hidden {
+    display: none;
+}
