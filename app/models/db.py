@@ -61,7 +61,7 @@ class Post(db.Model):
 
 
     # Relationships
-    owner = db.relationship('User', back_populates='my_posts')
+    owner = db.relationship('User', back_populates='my_posts', lazy='subquery')
     comments = db.relationship('Comment', back_populates='posts', cascade="all, delete")
     likes = db.relationship("User", secondary=likes, back_populates="liker")
 

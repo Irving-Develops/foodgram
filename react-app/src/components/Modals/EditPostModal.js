@@ -2,16 +2,37 @@ import {useState} from 'react'
 import { NavLink } from 'react-router-dom'
 import EditPost from '../Posts/EditPost'
 import { Modal } from '../Context/Modal'
+import './ModalCss/DeleteModal.css'
+import DeletePost from '../Posts/DeletePost'
 
 function EditPostModal({post, setShowModal}) {
         const [showEditModal, setEditModal] = useState(false)
+        const [showDeleteModal, setDeleteModal] = useState(false)
 
     return(
         <div id='post-modal-buttons'>
-            <button className='delete'>Delete</button>
-            <button onClick={() => {
-                setEditModal(true)
-            }} >Edit</button>
+            <button className='delete' onClick={() => setDeleteModal(true)}>Delete</button>
+            {showDeleteModal && (
+                <Modal onClose={() => {
+                    setDeleteModal(false)
+                    setShowModal(false)
+                }}>
+                    <div id="delete-post-modal">
+                        <div id="delete-header">
+                            <h5>Delete post?</h5>
+                            <p>Are you sure you want to delete this post?</p>
+                        </div>
+                        <div id='post-modal-buttons'>
+                            <DeletePost post={post} setShowModal={setShowModal} />
+                            <button onClick={() => setShowModal(false)}>Cancel</button>
+                        </div>
+                    </div>
+                </Modal>
+
+            )}
+
+
+            <button onClick={() => setEditModal(true)}>Edit</button>
             {showEditModal && (
                 <Modal onClose={() => {
                     setEditModal(false)
@@ -42,6 +63,8 @@ function EditPostModal({post, setShowModal}) {
                     </div>
                 </Modal>
             )}
+
+
             <button>Cancel</button>
         </div>
     )

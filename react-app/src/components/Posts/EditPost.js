@@ -6,6 +6,7 @@ import { editPostThunk } from "../../store/posts";
 function EditPost({post, setShowModal}) {
     const dispatch = useDispatch()
 
+    console.log("set modal in edit" , setShowModal)
     const [img_url, setImgUrl] = useState(post.img_url)
     const [caption, setCaption] = useState(post.caption)
 
