@@ -7,7 +7,7 @@ import EditPost from "./EditPost"
 import DeletePost from "./DeletePost"
 import AllComments from "../Comments/AllComments"
 import CreateComment from "../Comments/CreateComment"
-import PostUser from "./PostUser"
+import PostUser from "./PostOwner"
 import './Posts.css'
 
 function AllPosts(){
@@ -42,7 +42,7 @@ function AllPosts(){
                         <DeletePost post={post} />
                     </div> */}
                     <div className="comments-container"> 
-                        <AllComments postId={post.id} />
+                        <AllComments post={post} />
                     </div>
                     <div className="create-comment-container">
                         <CreateComment postId={post.id} />

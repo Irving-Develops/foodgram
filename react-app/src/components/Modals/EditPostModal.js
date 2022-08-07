@@ -11,7 +11,7 @@ function EditPostModal({post, setShowModal}) {
 
     return(
         <div id='post-modal-buttons'>
-            <button className='delete' onClick={() => setDeleteModal(true)}>Delete</button>
+            <button className='delete' onClick={() => setDeleteModal(true) }>Delete</button>
             {showDeleteModal && (
                 <Modal onClose={() => {
                     setDeleteModal(false)
