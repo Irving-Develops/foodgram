@@ -3,6 +3,7 @@ import {useState} from 'react'
 import { Modal } from '../Context/Modal';
 import { useSelector } from 'react-redux';
 import TimeSince from '../../TimeSince';
+import EditCommentModal from '../Modals/EditCommentModal';
 
 function CommentOwner({comment}) {
     const [showModal, setShowModal] = useState(false);
@@ -31,7 +32,7 @@ function CommentOwner({comment}) {
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
                         <div id="user-profile-modal">   
-                            {/* <EditcommentModal comment={comment} setShowModal={setShowModal}/> */}
+                            <EditCommentModal comment={comment} setShowModal={setShowModal}/>
                         </div>
                     </Modal>
                 )}

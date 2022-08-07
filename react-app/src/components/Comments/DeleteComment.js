@@ -1,16 +1,27 @@
-import React, {useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import { useDispatch } from "react-redux"
 import { deleteCommentThunk } from "../../store/comments"
 
-const DeleteComment = (comment) => {
+const DeleteComment = (comment, setShowModal) => {
     const dispatch = useDispatch()
+    const [deleted, setDeleted] = useState(false)
     const handleDelete = async() => {
-        await dispatch(deleteCommentThunk(comment))
+       let deletedComment =  await dispatch(deleteCommentThunk(comment))
+        await setDeleted(true)
+    }
+
+    const close = () => {
+        if(deleted) {
+            setShowModal(false)
+            setDeleted(false)
+        }
     }
 
 
     return (
-        <button onClick={handleDelete}>Delete</button>
+        <div onClick={close}>
+            <button className='delete' onClick={handleDelete}>Delete</button>
+        </div>
     )
 }
 

@@ -1,7 +1,7 @@
 .comments-container {
     display: flex;
     flex-direction: column;
-    height: 616px;
+    height: 516px;
     width: 100%;
     overflow: scroll;
 }
@@ -10,6 +10,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: auto;
 }
 #main-line {
     display: flex;
@@ -53,16 +54,14 @@
     border-radius: 0 15px 0 0;
     border-bottom: 1px solid var(--grey-border);
     background-color: white;
-    /* z-index: 10000; */
     width: 500px;
-    position: absolute;
-    top: 0;
     padding-left: 15px;
 }
 
 #empty-div-60 {
-    height: 60px;
-    background-color: white;
+    margin-top: 50px;
+    height: 80px;
+    background-color: red;
     width: 500px;
 }
 
@@ -71,18 +70,28 @@
 }
 
 .create-comment-form{
+    box-sizing: border-box;
     display: flex;
-    height: 40px;
+    height: 50px;
 }
 
 .create-comment-form input{
     height: 100%;
     width: 100%;
-    border: 1px solid var(--grey-border);
-    border-right: none;
+    border: none;
+    border-top: 1px solid var(--grey-border);
     outline: none;
     resize: none;
-    padding-left: 15px;
+    padding: 0 0 0 15px;
+}
+
+.create-comment-form button {
+    background-color: white;
+    font-weight: bold;
+    border: none;
+    border-top: 1px solid var(--grey-border);
+    padding-right: 15px;
+    color: var(--blue-button)
 }
 
 #view-comments  p{
@@ -92,4 +101,11 @@
 
 #view-comments  p:hover{
     cursor: pointer;
+}
+#create-in-modal {
+    width: 500px;
+    position: absolute;
+    bottom: 0;
+}
+#comments-comp-container {
 }
