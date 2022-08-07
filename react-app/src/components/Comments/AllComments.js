@@ -5,11 +5,13 @@ import CreateComment from "./CreateComment"
 import DeleteComment from "./DeleteComment"
 import EditComment from "./EditComment"
 import './Comments.css'
+import timeSince from "../scripts/time"
 
 function AllComments({postId}) {
     const dispatch = useDispatch()
     const comments = useSelector(state => state.comments)
 
+    
     let commentsArr;
     if(comments){
         commentsArr = Object.values(comments).filter(comment => comment.post_id === postId)

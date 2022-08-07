@@ -29,7 +29,7 @@ function AllPosts(){
     if(!posts) return null
     return (
         <div className="post-container">
-            {postsArr && postsArr.map(post => (
+            {postsArr && postsArr.slice(0).reverse().map(post => (
                 <div className="post-wrapper" id={post.id}>
                     <PostUser post={post}/>
                     <div className="post"> 
@@ -38,9 +38,9 @@ function AllPosts(){
                     <div className="caption-container">
                         <NavLink to={`/user/${post.user_id}`} id='owner'>{post.owner.username} </NavLink><span id="caption">{post.caption}</span>
                     </div>
-                    <div className="button-container">
+                    {/* <div className="button-container">
                         <DeletePost post={post} />
-                    </div>
+                    </div> */}
                     <div className="comments-container"> 
                         <AllComments postId={post.id} />
                     </div>
