@@ -3,7 +3,7 @@ import ReactTimeAgo from 'react-time-ago'
 
 export default function TimeSince({ date }) {
   return (
-    <div>
+    <div id="time-container">
        <ReactTimeAgo date={date} locale="en-US"/>
     </div>
   )

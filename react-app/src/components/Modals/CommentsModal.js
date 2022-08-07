@@ -2,6 +2,7 @@ import {useState} from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import PostUser from '../Posts/PostOwner'
+import CommentOwner from '../Comments/CommentOwner'
 import './ModalCss/CommentsModal.css'
 
 function CommentsModal({commentsArr, post}) {
@@ -13,7 +14,7 @@ function CommentsModal({commentsArr, post}) {
                 <div className='comments-container'>
                     <PostUser post={post} />
                     {commentsArr.map(comment => 
-                        <p>{comment.comment_text}</p>
+                        <CommentOwner comment={comment} />
                     )}
                 </div>
             </div>

@@ -38,14 +38,14 @@ function AllComments({post}) {
                     <CommentsModal commentsArr={commentsArr} post={post}/>
                 </Modal>
             )}
-            {commentsArr && commentsArr.slice(0).reverse().map(comment => (
+            {/* {commentsArr && commentsArr.slice(0).reverse().map(comment => (
                 <div className="comment-wrapper">
                     <p id={comment.id}>{comment.comment_text}</p>
                     <TimeSince date={comment.created_at} />
                     <EditComment comment={comment} />
                     <DeleteComment comment={comment} />
                 </div>
-            ))}
+            ))} */}
         </div>
     )
 }
