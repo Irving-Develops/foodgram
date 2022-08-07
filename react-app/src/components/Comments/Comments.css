@@ -14,6 +14,7 @@
 #main-line {
     display: flex;
     align-items: flex-start;
+    margin-left: 15px;
 }
 
 .username {
@@ -21,7 +22,7 @@
     margin: 0 10px;
 }
 
-#comment-text span {
+#comment-text {
     font-size: 14px;
     margin-bottom: 15px;
 }
@@ -56,6 +57,7 @@
     width: 500px;
     position: absolute;
     top: 0;
+    padding-left: 15px;
 }
 
 #empty-div-60 {
@@ -73,10 +75,21 @@
     height: 40px;
 }
 
-.create-comment-form textarea{
+.create-comment-form input{
     height: 100%;
     width: 100%;
-    border: none;
+    border: 1px solid var(--grey-border);
+    border-right: none;
     outline: none;
     resize: none;
+    padding-left: 15px;
+}
+
+#view-comments  p{
+    font-size: 14px;
+    color: var(--grey-text)
+}
+
+#view-comments  p:hover{
+    cursor: pointer;
 }

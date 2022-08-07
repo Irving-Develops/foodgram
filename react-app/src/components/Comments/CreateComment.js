@@ -27,7 +27,7 @@ function CreateComment(postId) {
 
     return (
         <form onSubmit={handleSubmit} className="create-comment-form">
-            <textarea
+            <input
                 type="text"
                 name="comment_text"
                 value={comment_text}
