@@ -5,7 +5,7 @@ import EditPostModal from '../Modals/EditPostModal'
 import { useSelector } from 'react-redux';
 
 function PostUser({post}) {
-    const [showModal, setShowModal] = useState(false);
+    const [showButtons, setShowButtons] = useState(false);
     const sessionUser = useSelector(state => state.session.user.id)
 
 
@@ -18,18 +18,16 @@ function PostUser({post}) {
             <div className="username">
                 <NavLink to={`/users/${post.owner.id}`}>{post.owner.username}</NavLink>
             </div>
-            {sessionUser === post.owner.id && (
+            {sessionUser === post.owner.id && !showButtons &&(
                 <div className='drop-down'>
-                    <svg onClick={() => setShowModal(true)} aria-label="More options" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><circle cx="12" cy="12" r="1.5"></circle><circle cx="6" cy="12" r="1.5"></circle><circle cx="18" cy="12" r="1.5"></circle></svg>
+                    <svg onClick={() => setShowButtons(!showButtons)} aria-label="More options" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><circle cx="12" cy="12" r="1.5"></circle><circle cx="6" cy="12" r="1.5"></circle><circle cx="18" cy="12" r="1.5"></circle></svg>
                 </div>
                 )}
-            {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
+                {showButtons && (
                     <div id="user-profile-modal">   
-                        <EditPostModal post={post} setShowModal={setShowModal}/>
+                        <EditPostModal post={post} setShowButtons={setShowButtons}/>
                     </div>
-                </Modal>
-            )}
+                )}
         </div>
     )
 

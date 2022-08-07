@@ -3,10 +3,9 @@ import {useDispatch} from 'react-redux'
 import { editPostThunk } from "../../store/posts";
 
 
-function EditPost({post, setShowModal}) {
+function EditPost({post, setEditModal, setShowButtons}) {
     const dispatch = useDispatch()
 
-    console.log("set modal in edit" , setShowModal)
     const [img_url, setImgUrl] = useState(post.img_url)
     const [caption, setCaption] = useState(post.caption)
 
@@ -32,7 +31,8 @@ function EditPost({post, setShowModal}) {
 
         const newPost = await dispatch(editPostThunk(editedPost))
 
-        setShowModal(false)
+        setEditModal(false)
+        setShowButtons(false)
     }
 
     return (

@@ -4,25 +4,38 @@ import { Modal } from '../Context/Modal'
 import './ModalCss/DeleteModal.css'
 import DeleteComment from '../Comments/DeleteComment'
 
-export default function EditCommentModal({comment, setShowModal}) {
+export default function EditCommentModal({comment, setShowButtons}) {
         const [showEditModal, setEditModal] = useState(false)
         const [showDeleteModal, setDeleteModal] = useState(false)
-        console.log(setShowModal, "show modal in edit comment")
-        const setShowModal2 = setShowModal
 
         return (
-        <div id='post-modal-buttons'>
-            {/* <button className='delete' onClick={() => setDeleteModal(true) }>Delete</button> */}
-            <DeleteComment comment={comment} setShowModal={setShowModal2} />
+        <div id='post-buttons'>
+            <button className='delete' onClick={() => setDeleteModal(true) }>Delete</button>
+            {showDeleteModal && (
+                <Modal onClose={() => {
+                    setDeleteModal(false)
+                }}>
+                    <div id="delete-post-modal">
+                        <div id="delete-header">
+                            <h5>Delete comment?</h5>
+                            <p>Are you sure you want to delete this comment?</p>
+                        </div>
+                        <div id='post-modal-buttons'>
+                            <button onClick={() => setDeleteModal(false)}>Cancel</button>
+                            <DeleteComment comment={comment} setDeleteModal={setDeleteModal} setShowButtons={setShowButtons} />
+                        </div>
+                    </div>
+
+                </Modal>
+            )}
             <button onClick={() => setEditModal(true)}>Edit</button>
             {showEditModal && (
                 <Modal onClose={() => {
                     setEditModal(false)
-                    setShowModal(false)
                 }}>
-                    <div id="edit-post-modal">
+                    <div id="edit-comment-modal">
                         <div id='head'>
-                            <button id="cancel" onClick={() => setShowModal(false)}>Cancel</button>
+                            <button id="cancel" onClick={() => setShowButtons(false)}>Cancel</button>
                             <span>Edit Post</span>
                             <div id="empty"></div>
                         </div>
@@ -43,7 +56,7 @@ export default function EditCommentModal({comment, setShowModal}) {
             )}
 
 
-            <button>Cancel</button>
+            <button onClick={() => setShowButtons(false)}>Cancel</button>
         </div>
         )
 }

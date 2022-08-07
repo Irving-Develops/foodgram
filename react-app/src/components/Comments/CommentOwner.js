@@ -6,8 +6,9 @@ import TimeSince from '../../TimeSince';
 import EditCommentModal from '../Modals/EditCommentModal';
 
 function CommentOwner({comment}) {
-    const [showModal, setShowModal] = useState(false);
+
     const sessionUser = useSelector(state => state.session.user.id)
+    const [showButtons, setShowButtons] = useState(false)
 
 
 
@@ -24,18 +25,16 @@ function CommentOwner({comment}) {
                     <span>{comment.comment_text}</span>
                     <TimeSince date={comment.created_at} />
                 </div>
-                {sessionUser === comment.owner.id && (
+                {sessionUser === comment.owner.id && !showButtons &&(
                     <div className='drop-down'>
-                        <svg onClick={() => setShowModal(true)} aria-label="More options" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><circle cx="12" cy="12" r="1.5"></circle><circle cx="6" cy="12" r="1.5"></circle><circle cx="18" cy="12" r="1.5"></circle></svg>
+                        <svg onClick={() => setShowButtons(true)} aria-label="More options" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><circle cx="12" cy="12" r="1.5"></circle><circle cx="6" cy="12" r="1.5"></circle><circle cx="18" cy="12" r="1.5"></circle></svg>
                     </div>
                     )}
-                {showModal && (
-                    <Modal onClose={() => setShowModal(false)}>
+                    {showButtons && (
                         <div id="user-profile-modal">   
-                            <EditCommentModal comment={comment} setShowModal={setShowModal}/>
+                            <EditCommentModal comment={comment} setShowButtons={setShowButtons}/>
                         </div>
-                    </Modal>
-                )}
+                    )}
             </div>
         </div>
     )

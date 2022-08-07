@@ -23,6 +23,8 @@ function CreateComment(postId) {
         }
 
         const newComment = await dispatch(addCommentThunk(comment))
+
+        setCommentText('')
     }
 
     return (
@@ -34,7 +36,7 @@ function CreateComment(postId) {
                 placeholder="Add a comment..."
                 onChange={updateCommentText}
             />
-            <button type="submit">Submit</button>
+            <button type="submit">Post</button>
         </form>
     )
 }

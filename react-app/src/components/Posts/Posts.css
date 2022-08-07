@@ -56,3 +56,14 @@
     color: var(--text-color);
     font-weight: bold;
 }
+
+/* Buttons */
+
+#user-profile-modal {
+    margin-left: auto;
+}
+#user-profile-modal button{
+    margin-left: auto;
+    background-color: white;
+    border: none;
+}

@@ -5,17 +5,22 @@ import { Modal } from '../Context/Modal'
 import './ModalCss/DeleteModal.css'
 import DeletePost from '../Posts/DeletePost'
 
-function EditPostModal({post, setShowModal}) {
+function EditPostModal({post, setShowButtons}) {
         const [showEditModal, setEditModal] = useState(false)
         const [showDeleteModal, setDeleteModal] = useState(false)
 
+
     return(
-        <div id='post-modal-buttons'>
-            <button className='delete' onClick={() => setDeleteModal(true) }>Delete</button>
+        <div id='post-buttons'>
+            <button className='delete' onClick={() => {
+                setDeleteModal(true) 
+                // setShowButtons(false)
+            }}>Delete</button>
+            {/* <DeletePost post={post}/> */}
+
             {showDeleteModal && (
                 <Modal onClose={() => {
-                    setDeleteModal(false)
-                    setShowModal(false)
+                    setEditModal(false)
                 }}>
                     <div id="delete-post-modal">
                         <div id="delete-header">
@@ -23,24 +28,25 @@ function EditPostModal({post, setShowModal}) {
                             <p>Are you sure you want to delete this post?</p>
                         </div>
                         <div id='post-modal-buttons'>
-                            <DeletePost post={post} setShowModal={setShowModal} />
-                            <button onClick={() => setShowModal(false)}>Cancel</button>
+                            <button onClick={() => setDeleteModal(false)}>Cancel</button>
+                            <DeletePost post={post} setDeleteModal={setDeleteModal} setShowButtons={setShowButtons}/>
                         </div>
                     </div>
                 </Modal>
-
-            )}
+            )} 
 
 
             <button onClick={() => setEditModal(true)}>Edit</button>
             {showEditModal && (
                 <Modal onClose={() => {
                     setEditModal(false)
-                    setShowModal(false)
                 }}>
                     <div id="edit-post-modal">
                         <div id='head'>
-                            <button id="cancel" onClick={() => setShowModal(false)}>Cancel</button>
+                            <button id="cancel" onClick={() => {
+                                setEditModal(false)
+                                setShowButtons(false)
+                                }}>Cancel</button>
                             <span>Edit Post</span>
                             <div id="empty"></div>
                         </div>
@@ -57,7 +63,7 @@ function EditPostModal({post, setShowModal}) {
                                         <NavLink to={`/users/${post.owner.id}`}>{post.owner.username}</NavLink>
                                     </div>
                                 </div>
-                                <EditPost post={post} setShowModal={setShowModal}/>
+                                <EditPost post={post} setEditModal={setEditModal} setShowButtons={setShowButtons}/>
                             </div>
                         </div>
                     </div>
@@ -65,7 +71,7 @@ function EditPostModal({post, setShowModal}) {
             )}
 
 
-            <button>Cancel</button>
+            <button onClick={()=> setShowButtons(false)}>Cancel</button>
         </div>
     )
 }

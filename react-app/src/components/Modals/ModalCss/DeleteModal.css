@@ -4,7 +4,6 @@
     justify-content: center;
     text-align: center;
     height: 100px;
-    border-bottom: 1px solid var(--grey-border);
 }
 
 #delete-header h5 {
@@ -22,9 +21,13 @@
 }
 
 #delete {
+    font-weight: bold;
+    font-size: 14px;
     color: red;
 }
-
-#post-modal-buttons:first-child {
+#post-buttons {
+    margin-left: auto;
+}
+#post-buttons:first-child {
     color: red;
 }

@@ -2,20 +2,22 @@ import React, {useEffect} from "react"
 import { useDispatch } from "react-redux"
 import { deletePostThunk } from "../../store/posts"
 
-const DeletePost = (post, setShowModal) => {
+const DeletePost = ({post, setDeleteModal, setShowButtons}) => {
 
     
     const dispatch = useDispatch()
 
-    const handleDelete = async(e) => {
-        e.preventDefault()
+    console.log(setDeleteModal, "test")
+
+    const handleDelete = async() => {
         let deleted =  await dispatch(deletePostThunk(post))
-        if(deleted) window.alert("Post has been deleted")
+        setDeleteModal(false)
+        setShowButtons(false)
     }
 
     if(!post) return null
     return (
-            <button style={{color: "red"}} onClick={handleDelete} >Delete</button>
+            <button style={{color: "red"}} onClick={handleDelete} id="delete">Delete</button>
     )
 }
 

@@ -71,13 +71,12 @@ export const editCommentThunk= (comment) => async(dispatch) => {
 }
 
 export const deleteCommentThunk = (comment) => async (dispatch) => {
-    const {id} = comment
-  const response = await fetch(`/api/comments/${comment.comment.id}`, {
+  const response = await fetch(`/api/comments/${comment.id}`, {
     method: 'DELETE',
   });
   if (response.ok) {
     await response.json();
-    dispatch(deleteComment(comment.comment));
+    dispatch(deleteComment(comment));
     return comment;
   }
   else {

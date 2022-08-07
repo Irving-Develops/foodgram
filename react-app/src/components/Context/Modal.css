@@ -36,23 +36,39 @@
   display: none;
 }
 
-#post-modal-buttons {
+#post-buttons {
+  display: flex;
+}
+#post-buttons button:hover{
+  text-decoration: underline;
+}
+
+#post-buttons button:nth-child(2){
+  border-left: 1px solid var(--grey-border);
+  border-right: 1px solid var(--grey-border);
+}
+
+#delete-post-modal {
   display: flex;
   flex-direction: column;
 }
 
-#post-modal-buttons button{
+#post-modal-buttons {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+#post-modal-buttons button:hover{
+  background-color: var(--grey-button-bg);
+}
+
+#delete-post-modal button{
   width: 400px;
   background-color: white;
   height: 48px;
   border: none;
-}
-
-#post-modal-buttons button:hover{
-  background-color: var(--grey-button);
-}
-
-#post-modal-buttons button:nth-child(2){
+} 
+#delete-post-modal button:nth-child(2){
   border-top: 1px solid var(--grey-border);
   border-bottom: 1px solid var(--grey-border);
 }

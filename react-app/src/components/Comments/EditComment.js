@@ -34,7 +34,6 @@ function EditComment({comment}) {
                 value={comment_text}
             />
             <button type="submit">Edit</button>
-            {/* {(imageLoading)&& <p>Loading...</p>} */}
         </form>
     )
 }
