@@ -96,5 +96,6 @@ class Comment(db.Model):
             'comment_text': self.comment_text,
             'user_id': self.user_id,
             'post_id': self.post_id,
-            'created_at': self.created_at
+            'created_at': self.created_at,
+            'owner': self.users.to_dict()
         }
