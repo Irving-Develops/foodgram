@@ -77,13 +77,14 @@ export const editPostThunk= (post) => async(dispatch) => {
 }
 
 export const deletePostThunk = (post) => async (dispatch) => {
+    console.log(post, "in thunk")
     const {id} = post
-  const response = await fetch(`/api/posts/${post.post.id}`, {
+  const response = await fetch(`/api/posts/${post.id}`, {
     method: 'DELETE',
   });
   if (response.ok) {
     await response.json();
-    dispatch(deletePost(post.post));
+    dispatch(deletePost(post));
     return post;
   }
   else {

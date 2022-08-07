@@ -11,6 +11,7 @@ const DeleteComment = (comment, setShowModal) => {
     }
 
     const close = () => {
+
         if(deleted) {
             setShowModal(false)
             setDeleted(false)

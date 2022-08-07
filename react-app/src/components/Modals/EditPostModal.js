@@ -8,27 +8,31 @@ import DeletePost from '../Posts/DeletePost'
 function EditPostModal({post, setShowModal}) {
         const [showEditModal, setEditModal] = useState(false)
         const [showDeleteModal, setDeleteModal] = useState(false)
+        console.log(setShowModal, "inside edit post")
+        const setShowModal2 = setShowModal
 
     return(
         <div id='post-modal-buttons'>
-            <button className='delete' onClick={() => setDeleteModal(true) }>Delete</button>
+            <button className='delete' onClick={() => {
+                setDeleteModal(true) 
+            }}>Delete</button>
+            {/* <DeletePost post={post} setShowModal={setShowModal2} /> */}
+
             {showDeleteModal && (
-                <Modal onClose={() => {
-                    setDeleteModal(false)
-                    setShowModal(false)
-                }}>
                     <div id="delete-post-modal">
-                        <div id="delete-header">
-                            <h5>Delete post?</h5>
-                            <p>Are you sure you want to delete this post?</p>
-                        </div>
-                        <div id='post-modal-buttons'>
-                            <DeletePost post={post} setShowModal={setShowModal} />
-                            <button onClick={() => setShowModal(false)}>Cancel</button>
+                        <div id='post-modal-background'> 
+                            <div id='post-modal-content'>
+                                <div id="delete-header">
+                                    <h5>Delete post?</h5>
+                                    <p>Are you sure you want to delete this post?</p>
+                                </div>
+                                <div id='post-modal-buttons'>
+                                    <DeletePost post={post} setDeleteModal={setDeleteModal} setShowModal={setShowModal2}/>
+                                    <button onClick={() => setShowModal(false)}>Cancel</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </Modal>
-
             )}
 
 
