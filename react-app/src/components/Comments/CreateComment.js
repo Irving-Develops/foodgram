@@ -26,12 +26,12 @@ function CreateComment(postId) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>Create a comment</label>
-            <input
+        <form onSubmit={handleSubmit} className="create-comment-form">
+            <textarea
                 type="text"
                 name="comment_text"
                 value={comment_text}
+                placeholder="Add a comment..."
                 onChange={updateCommentText}
             />
             <button type="submit">Submit</button>

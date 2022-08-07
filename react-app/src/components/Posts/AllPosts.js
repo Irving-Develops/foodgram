@@ -41,7 +41,7 @@ function AllPosts(){
                     {/* <div className="button-container">
                         <DeletePost post={post} />
                     </div> */}
-                    <div className="comments-container"> 
+                    <div> 
                         <AllComments post={post} />
                     </div>
                     <div className="create-comment-container">

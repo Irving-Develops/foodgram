@@ -11,16 +11,17 @@ function CommentOwner({comment}) {
 
 
     return (
-        <div className="comment-container">
+        <div className="comment-container" >
             <div id='main-line'>
                 <div className='user-img'>
                     <img src='https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg' alt={comment.owner.username}/>
                 </div>
                 <div className="username">
                 </div>
-                <div id='comment_text'>
+                <div id='comment-text'>
                     <NavLink to={`/users/${comment.owner.id}`}>{comment.owner.username}</NavLink>
                     <span>{comment.comment_text}</span>
+                    <TimeSince date={comment.created_at} />
                 </div>
                 {sessionUser === comment.owner.id && (
                     <div className='drop-down'>
@@ -35,7 +36,6 @@ function CommentOwner({comment}) {
                     </Modal>
                 )}
             </div>
-            <TimeSince date={comment.created_at} />
         </div>
     )
 

@@ -12,10 +12,15 @@ function CommentsModal({commentsArr, post}) {
                     <img src={post.img_url} alt="post"></img>
                 </div>
                 <div className='comments-container'>
-                    <PostUser post={post} />
-                    {commentsArr.map(comment => 
-                        <CommentOwner comment={comment} />
-                    )}
+                    <div id='post-owner'>
+                        <PostUser post={post} />
+                    </div>
+                    <div id="empty-div-60">
+                        test
+                    </div>
+                        {commentsArr.map(comment => 
+                            <CommentOwner comment={comment} />
+                        )}
                 </div>
             </div>
         )

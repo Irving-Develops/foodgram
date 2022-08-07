@@ -29,7 +29,7 @@ function AllComments({post}) {
 
     if(!comments) return null
     return (
-        <div className="comment-container">
+        <div id="view-comments">
             {commentCount > 0 && (
                 <p onClick={() => setCommentModal(true)}>view all {commentCount} comments</p>
             )}
