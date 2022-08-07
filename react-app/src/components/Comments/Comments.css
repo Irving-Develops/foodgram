@@ -80,3 +80,8 @@
     outline: none;
     resize: none;
 }
+
+.toy-editor-container {
+    display: flex;
+    width: 300px;
+}

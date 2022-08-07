@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import { addCommentThunk } from "../../store/comments";
+import { Editor } from "@tinymce/tinymce-react";
+
 
 function CreateComment(postId) {
     const dispatch = useDispatch()
@@ -27,13 +29,26 @@ function CreateComment(postId) {
 
     return (
         <form onSubmit={handleSubmit} className="create-comment-form">
-            <textarea
+            {/* <textarea
                 type="text"
                 name="comment_text"
                 value={comment_text}
                 placeholder="Add a comment..."
                 onChange={updateCommentText}
-            />
+            /> */}
+                <Editor
+                apiKey="qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc"
+                init={{
+                    plugins: "emoticons",
+                    toolbar: "emoticons",
+                    toolbar_location: "left",
+                    menubar: false,
+                    statusbar: false,
+                    height: 40
+                }}
+                onChange={updateCommentText}
+                value={comment_text}
+                />
             <button type="submit">Submit</button>
         </form>
     )
