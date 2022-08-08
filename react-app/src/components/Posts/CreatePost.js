@@ -32,20 +32,23 @@ function CreatePost({setCreateModal}) {
 
     return (
         <form onSubmit={handleSubmit} id="create-post-form">
-            <label>Create a Post: </label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={updateImgUrl}
-            />
-            <input 
-                type="text"
-                name="caption"
-                onChange={updateCaption}
-                value={caption}
-            />
-            <button type="submit">Submit</button>
-            {/* {(imageLoading)&& <p>Loading...</p>} */}
+            <div>
+                <input
+                type="file"
+                accept="image/*"
+                onChange={updateImgUrl}
+                />
+            </div>
+            <div>
+                <textarea 
+                    type="text"
+                    name="caption"
+                    placeholder="Add a caption..."
+                    onChange={updateCaption}
+                    value={caption}
+                />
+                <button type="submit">Submit</button>
+            </div>
         </form>
     )
 

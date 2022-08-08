@@ -11,12 +11,17 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  let formattedErr = []
 
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      data.forEach(error =>  {
+          let errors = error.split(": ")
+          formattedErr.push(errors[1]) 
+        })
+        setErrors(formattedErr)
     }
   };
 
@@ -42,7 +47,7 @@ const LoginForm = () => {
           <form onSubmit={onLogin} id="form">
             <div id="content">
               <h1>Foodgram</h1>
-              <div>
+              <div className='errors'>
                 {errors.map((error, ind) => (
                   <div key={ind}>{error}</div>
                 ))}
@@ -54,6 +59,7 @@ const LoginForm = () => {
                   placeholder='Email'
                   value={email}
                   onChange={updateEmail}
+                  required
                 />
               </div>
               <div className='input-field'>
@@ -63,6 +69,7 @@ const LoginForm = () => {
                   placeholder='Password'
                   value={password}
                   onChange={updatePassword}
+                  required
                 />
               </div>
               <div className='button-blue'>
