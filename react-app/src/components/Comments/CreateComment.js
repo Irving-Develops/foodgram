@@ -6,11 +6,17 @@ function CreateComment(postId) {
     const dispatch = useDispatch()
 
     const [comment_text, setCommentText] = useState('')
+    const [charCount, setCharCount] = useState(0)
+    const [isDisabled, setIsDisabled] = useState(true)
+
     const user = useSelector(state => state.session.user.id)
 
     const updateCommentText = (e) => {
         const comment_text = e.target.value
+        if(e.target.value.length > 0 && e.target.value.length < 256) setIsDisabled(false)
+        if(e.target.value.length === 0 || e.target.value.length > 255) setIsDisabled(true)
         setCommentText(comment_text)
+        setCharCount(comment_text.length)
     }
 
     const handleSubmit = async(e) => {
@@ -25,19 +31,24 @@ function CreateComment(postId) {
         const newComment = await dispatch(addCommentThunk(comment))
 
         setCommentText('')
+        setCharCount(0)
+        setIsDisabled(true)
     }
 
     return (
         
-        <form onSubmit={handleSubmit} className="create-comment-form">
-            <input
-                type="text"
-                name="comment_text"
-                value={comment_text}
-                placeholder="Add a comment..."
-                onChange={updateCommentText}
-            />
-            <button type="submit">Post</button>
+        <form onSubmit={handleSubmit} id={isDisabled ? "disabled" : null}  className="create-comment-form">
+                <input
+                    type="text"
+                    
+                    name="comment_text"
+                    value={comment_text}
+                    placeholder="Add a comment..."
+                    onChange={updateCommentText}
+                />
+                <div data-charCount={charCount} className="charcount">
+                </div>
+            <button disabled={isDisabled} type="submit">Post</button>
         </form>
     )
 }

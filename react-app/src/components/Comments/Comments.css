@@ -27,6 +27,7 @@
 #comment-text {
     font-size: 14px;
     margin-bottom: 15px;
+    word-break: break-all;
 }
 #main-line a {
     text-decoration: none;
@@ -110,4 +111,16 @@
     bottom: 0;
 }
 #comments-comp-container {
+}
+
+
+.charcount::after{
+    display: flex;
+    justify-content: center;;
+    align-items: center;
+    padding: 18px 3px 0 3px;
+    content: attr(data-charcount) "/255";
+    border-top: 1px solid var(--grey-border);
+    font-size: 10px;
+    color: var(--grey-text);
 }

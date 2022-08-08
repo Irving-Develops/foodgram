@@ -46,7 +46,7 @@
 }
 
 #disabled button{
-    background-color: var(--disabled);
+    color: var(--disabled);
 }
 
 .errors {
