@@ -1,7 +1,7 @@
 .comments-container {
     display: flex;
     flex-direction: column;
-    height: 516px;
+    max-height: 516px;
     width: 100%;
     overflow: scroll;
 }
@@ -20,7 +20,7 @@
 
 .username {
     font-weight: bold;
-    margin: 0 10px;
+    margin: 0;
 }
 
 #comment-text {
@@ -96,6 +96,7 @@
 
 #view-comments  p{
     font-size: 14px;
+    margin-left: 15px;
     color: var(--grey-text)
 }
 

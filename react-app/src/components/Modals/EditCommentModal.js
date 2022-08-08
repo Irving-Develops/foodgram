@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { Modal } from '../Context/Modal'
 import './ModalCss/DeleteModal.css'
 import DeleteComment from '../Comments/DeleteComment'
+import EditComment from '../Comments/EditComment'
 
 export default function EditCommentModal({comment, setShowButtons}) {
         const [showEditModal, setEditModal] = useState(false)
@@ -36,20 +37,11 @@ export default function EditCommentModal({comment, setShowButtons}) {
                     <div id="edit-comment-modal">
                         <div id='head'>
                             <button id="cancel" onClick={() => setShowButtons(false)}>Cancel</button>
-                            <span>Edit Post</span>
+                            <span>Edit Comment</span>
                             <div id="empty"></div>
                         </div>
-                        <div id="edit-post-content">
-                            <div className='post'>
-                            </div>  
-                            <div id="caption">
-                                <div className="user-container" id="edit">
-                                    <div className="user-img" id="user-img">
-                                    </div>
-                                    <div className="username">
-                                    </div>
-                                </div>
-                            </div>
+                        <div className='create-comment-container'>
+                            <EditComment comment={comment} setEditModal={setEditModal} setShowButtons={setShowButtons}/>
                         </div>
                     </div>
                 </Modal>

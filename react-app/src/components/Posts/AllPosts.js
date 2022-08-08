@@ -7,7 +7,7 @@ import EditPost from "./EditPost"
 import DeletePost from "./DeletePost"
 import AllComments from "../Comments/AllComments"
 import CreateComment from "../Comments/CreateComment"
-import PostUser from "./PostOwner"
+import PostOwner from "./PostOwner"
 import './Posts.css'
 
 function AllPosts(){
@@ -31,7 +31,7 @@ function AllPosts(){
         <div className="post-container">
             {postsArr && postsArr.slice(0).reverse().map(post => (
                 <div className="post-wrapper" id={post.id}>
-                    <PostUser post={post}/>
+                    <PostOwner post={post}/>
                     <div className="post"> 
                         <img src={post.img_url} alt="delicious platter" />
                     </div>

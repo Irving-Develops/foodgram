@@ -21,3 +21,8 @@
 #comment-modal-buttons {
     display: flex;
 }
+
+#edit-comment-modal {
+    width: 500px;
+    height: auto;
+}

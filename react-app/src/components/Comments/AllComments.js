@@ -8,19 +8,24 @@ import './Comments.css'
 import { Modal } from "../Context/Modal"
 import CommentsModal from "../Modals/CommentsModal"
 import TimeSince from "../../TimeSince"
+import CommentOwner from "./CommentOwner"
 
 function AllComments({post}) {
     const dispatch = useDispatch()
     const comments = useSelector(state => state.comments)
+    const sessionUser = useSelector(state => state.session.user.id)
     const [showCommentModal, setCommentModal] = useState(false)
-    const [showDeleteModal, setDeleteModal] = useState(false)
+    let showPic = true;
 
-    
+    let myComments;
     let commentsArr;
-    let commentCount
+    let commentCount;
+
     if(comments){
         commentsArr = Object.values(comments).filter(comment => comment.post_id === post.id)
         commentCount = commentsArr.length
+        myComments = commentsArr.filter(comments => comments.owner.id === sessionUser)
+        console.log(myComments, "comments array")
     }
 
     useEffect(() => {
@@ -38,14 +43,11 @@ function AllComments({post}) {
                     <CommentsModal commentsArr={commentsArr} post={post}/>
                 </Modal>
             )}
-            {/* {commentsArr && commentsArr.slice(0).reverse().map(comment => (
-                <div className="comment-wrapper">
-                    <p id={comment.id}>{comment.comment_text}</p>
-                    <TimeSince date={comment.created_at} />
-                    <EditComment comment={comment} />
-                    <DeleteComment comment={comment} />
-                </div>
-            ))} */}
+            <div className="comments-container">
+                {myComments && myComments.map(comment => 
+                    <CommentOwner comment={comment} showPic={showPic}/>
+                )}
+            </div>
         </div>
     )
 }

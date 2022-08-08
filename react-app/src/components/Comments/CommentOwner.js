@@ -5,21 +5,21 @@ import { useSelector } from 'react-redux';
 import TimeSince from '../../TimeSince';
 import EditCommentModal from '../Modals/EditCommentModal';
 
-function CommentOwner({comment}) {
+function CommentOwner({comment, showPic}) {
 
     const sessionUser = useSelector(state => state.session.user.id)
     const [showButtons, setShowButtons] = useState(false)
 
-
+    console.log(showPic, "show pic?")
 
     return (
         <div className="comment-container" >
             <div id='main-line'>
+                {!showPic && (
                 <div className='user-img'>
                     <img src='https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg' alt={comment.owner.username}/>
                 </div>
-                <div className="username">
-                </div>
+                )}
                 <div id='comment-text'>
                     <NavLink to={`/users/${comment.owner.id}`}>{comment.owner.username}</NavLink>
                     <span>{comment.comment_text}</span>

@@ -4,7 +4,7 @@ import { Modal } from '../Context/Modal';
 import EditPostModal from '../Modals/EditPostModal'
 import { useSelector } from 'react-redux';
 
-function PostUser({post}) {
+function PostOwner({post}) {
     const [showButtons, setShowButtons] = useState(false);
     const sessionUser = useSelector(state => state.session.user.id)
 
@@ -33,4 +33,4 @@ function PostUser({post}) {
 
 }
     
-    export default PostUser
+    export default PostOwner

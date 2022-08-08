@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {useDispatch} from 'react-redux'
 import { editCommentThunk } from "../../store/comments";
 
-function EditComment({comment}) {
+function EditComment({comment, setEditModal, setShowButtons}) {
     const dispatch = useDispatch();
 
     const [comment_text, setCommentText] = useState(comment.comment_text)
@@ -23,10 +23,13 @@ function EditComment({comment}) {
         }
 
         const newComment = await dispatch(editCommentThunk(editedComment))
+
+        setEditModal(false)
+        setShowButtons(false)
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="create-comment-form">
             <input 
                 type="text"
                 name="comment_text"
