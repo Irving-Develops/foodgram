@@ -18,7 +18,7 @@ function CommentsModal({commentsArr, post}) {
                     </div>
 
                     <div className='comments-container'>
-                            {commentsArr.map(comment => 
+                            {commentsArr.slice(0).reverse().map(comment => 
                                 <CommentOwner comment={comment} />
                             )}
                     <div className="create-comment-container" id="create-in-modal">

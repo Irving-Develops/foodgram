@@ -28,6 +28,7 @@ function CreateComment(postId) {
     }
 
     return (
+        
         <form onSubmit={handleSubmit} className="create-comment-form">
             <input
                 type="text"

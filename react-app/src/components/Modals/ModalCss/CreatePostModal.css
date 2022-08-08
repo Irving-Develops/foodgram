@@ -1,0 +1,17 @@
+#create-post-container {
+    display: flex;
+    flex-direction: column;
+    width: 601px;
+    height: 644px;
+}
+
+#create-post-header {
+    text-align: center;
+    border-bottom: 1px solid var(--grey-border);
+}
+
+#create-post-form button::-webkit-file-upload-button{
+    border: none;
+    background-color: var(--blue-button);
+    color: white;
+}

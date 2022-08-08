@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux'
 import { addPostThunk } from "../../store/posts";
 
 
-function CreatePost() {
+function CreatePost({setCreateModal}) {
     const dispatch = useDispatch()
 
     const [img_url, setImgUrl] = useState(null)
@@ -27,10 +27,11 @@ function CreatePost() {
         }
 
         const newPost = await dispatch(addPostThunk(post))
+        setCreateModal(false)
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} id="create-post-form">
             <label>Create a Post: </label>
             <input
               type="file"
