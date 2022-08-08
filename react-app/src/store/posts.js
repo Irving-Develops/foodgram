@@ -45,7 +45,6 @@ export const addPostThunk = (post) => async(dispatch) => {
     const res = await fetch('/api/posts', {
         method: "POST",
         body: formData
-        // body: formData,
     });
     if (res.ok) {
         const post = await res.json();
