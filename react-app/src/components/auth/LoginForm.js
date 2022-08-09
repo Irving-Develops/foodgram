@@ -42,6 +42,9 @@ const LoginForm = () => {
       <div id="login-container">
         <div id="login-image">
           <img src="https://www.instagram.com/static/images/homepage/phones/home-phones.png/1dc085cdb87d.png" alt="phone" />
+          <div id='img2'>
+              <img src="/images/homepage-img.png" alt="kids catching apple"/>
+          </div>
         </div>
         <div id="login-form">
           <form onSubmit={onLogin} id="form">
