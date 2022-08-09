@@ -11,7 +11,6 @@
 #login-container {
     display: flex;
     align-items: center;
-    gap: 100px;
 }
 
 #login-image {
@@ -22,9 +21,15 @@
     height: 300px;
 }
 
-#login-image img {
+/* #login-image img {
     width: 400px;
     margin-bottom: 35px;
+} */
+#login-image img:last-child {
+    width: 250px;
+    position: relative;
+    top: -22px;
+    right: 309px;
 }
 
 #login-form {

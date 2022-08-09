@@ -41,10 +41,8 @@ const LoginForm = () => {
     <div id="full-screen">
       <div id="login-container">
         <div id="login-image">
-          <img src="/images/homepage-img.png" alt="phone" />
-          {/* <div id='img2'>
-              <img src="/images/homepage-img.png" alt="kids catching apple"/>
-          </div> */}
+          <img src="https://www.instagram.com/static/images/homepage/phones/home-phones.png/1dc085cdb87d.png" alt="phone" />
+          <img src="https://www.instagram.com/static/images/homepage/screenshots/screenshot4-2x.png/8e9224a71939.png" alt="kids balancing apples" />
         </div>
         <div id="login-form">
           <form onSubmit={onLogin} id="form">
