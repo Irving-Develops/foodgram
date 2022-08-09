@@ -22,10 +22,9 @@
     height: 300px;
 }
 
-#img2 img {
-    position: relative;
-    left: 0;
-    width: 240px;
+#login-image img {
+    width: 400px;
+    margin-bottom: 35px;
 }
 
 #login-form {
