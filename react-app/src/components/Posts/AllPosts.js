@@ -49,7 +49,6 @@ function AllPosts(){
                     </div>
                 </div>
             ))}
-            <CreatePost />
         </div>
     )
 }

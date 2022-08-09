@@ -51,7 +51,7 @@ function EditPostModal({post, setShowButtons}) {
                             <div id="empty"></div>
                         </div>
                         <div id="edit-post-content">
-                            <div className='post'>
+                            <div className='post-edit'>
                                 <img src={post.img_url} alt="post.id" />
                             </div>  
                             <div id="caption">

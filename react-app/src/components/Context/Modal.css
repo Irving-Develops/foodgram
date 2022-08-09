@@ -114,6 +114,7 @@
 
 #edit-post-content {
   display: flex;
+  height: 600px;
 }
 
 #caption button {
