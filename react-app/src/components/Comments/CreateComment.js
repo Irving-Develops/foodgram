@@ -45,8 +45,10 @@ function CreateComment(postId) {
                     placeholder="Add a comment..."
                     onChange={updateCommentText}
                 />
-                <div data-charCount={charCount} className="charcount">
-                </div>
+                {charCount > 255 || charCount === 0 ? <div data-charCount={charCount} className="invalid-charcount"></div>
+                :
+                <div data-charCount={charCount} className="charcount"></div>
+                }
             <button disabled={isDisabled} type="submit">Post</button>
         </form>
     )

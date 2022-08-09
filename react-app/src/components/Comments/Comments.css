@@ -122,3 +122,14 @@
     font-size: 10px;
     color: var(--grey-text);
 }
+
+.invalid-charcount::after {
+    display: flex;
+    justify-content: center;;
+    align-items: center;
+    padding: 18px 3px 0 3px;
+    content: attr(data-charcount) "/255";
+    border-top: 1px solid var(--grey-border);
+    font-size: 10px;
+    color: red;
+}

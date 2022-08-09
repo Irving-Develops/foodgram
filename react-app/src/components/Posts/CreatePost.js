@@ -60,8 +60,10 @@ function CreatePost({setCreateModal}) {
                     onChange={updateCaption}
                     value={caption}
                 />
-                <div data-charCount={charCount} className="charcount">
-                </div>
+                {charCount > 255 ? <div data-charCount={charCount} className="invalid-charcount"></div>
+                :
+                <div data-charCount={charCount} className="charcount"></div>
+                }  
             </div>
         </form>
     )

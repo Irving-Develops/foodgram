@@ -1,11 +1,21 @@
-#navbar {
+#navbar-container {
     position: fixed;
     top: 0;
     width: 100%;
     margin: 0 0 100px 0;
     display: flex;
+    justify-content: center;
     background-color: white;
     border: 1px solid var(--grey-border)
+}
+
+#navbar {
+    display: flex;
+    gap: 20%;
+}
+
+#navlinks {
+    display: flex;
 }
 
 #navlinks img{
