@@ -3,8 +3,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 601px;
-    height: 644px;
+    width: 470px;
+    height: 530px;
 }
 
 #create-post-header {
@@ -47,13 +47,13 @@
 #create-caption,
 #create-caption textarea {
   width: 100%;
-  height: 380px;
+  height: 50%;
 }
 
 #create-caption textarea {
   border: none;
   padding: 15px;
-  height: 380px;
+  height: 95%;
   border-top: 1px solid var(--grey-border);
   outline: none;
   resize: none;
@@ -62,7 +62,7 @@
 .create-post-form button {
     position: relative;
     top: -36px;
-    left: 530px;
+    left: 400px;
     font-weight: bold;
     outline: none;
     border: none;
