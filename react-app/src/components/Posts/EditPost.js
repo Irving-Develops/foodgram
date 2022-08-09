@@ -8,8 +8,9 @@ function EditPost({post, setEditModal, setShowButtons}) {
 
     const [img_url, setImgUrl] = useState(post.img_url)
     const [caption, setCaption] = useState(post.caption)
+    const [charCount, setCharCount] = useState(post.caption.length)
+    const [isDisabled, setIsDisabled] = useState(false)
 
-    console.log('edit img url', img_url)
 
     const updateImgUrl = (e) => {
         const img = e.target.files[0]
@@ -17,6 +18,9 @@ function EditPost({post, setEditModal, setShowButtons}) {
     }
     const updateCaption = (e) => {
         const caption = e.target.value
+        setCharCount(e.target.value.length)
+        if(e.target.value.length > 0 && e.target.value.length < 256) setIsDisabled(false)
+        if(e.target.value.length === 0 || e.target.value.length >= 256) setIsDisabled(true)
         setCaption(caption)
     }
 
@@ -36,13 +40,13 @@ function EditPost({post, setEditModal, setShowButtons}) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} id={isDisabled ? "disabled" : null} >
             {/* <input
               type="file"
               accept="image/*"
               onChange={updateImgUrl}
             /> */}
-            <button type="submit">Done</button>
+            <button disabled={isDisabled} type="submit">Done</button>
             <textarea 
                 type="text"
                 name="caption"
@@ -50,7 +54,8 @@ function EditPost({post, setEditModal, setShowButtons}) {
                 onChange={updateCaption}
                 value={caption}
             />
-            {/* {(imageLoading)&& <p>Loading...</p>} */}
+            <div data-charCount={charCount} className="charcount">
+            </div>
         </form>
     )
 

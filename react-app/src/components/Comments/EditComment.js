@@ -4,13 +4,19 @@ import { editCommentThunk } from "../../store/comments";
 
 function EditComment({comment, setEditModal, setShowButtons}) {
     const dispatch = useDispatch();
-
     const [comment_text, setCommentText] = useState(comment.comment_text)
+    const [charCount, setCharCount] = useState(comment.comment_text.length)
+    const [isDisabled, setIsDisabled] = useState(false)
 
+    
     const updateCommentText = (e) => {
-        const comment = e.target.value
-        setCommentText(comment)
+        // const comment = e.target.value
+        setCharCount(e.target.value.length)
+        if(e.target.value.length > 0 && e.target.value.length < 256) setIsDisabled(false)
+        if(e.target.value.length === 0 || e.target.value.length >= 256) setIsDisabled(true)
+        setCommentText(e.target.value)
     }
+
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -24,19 +30,24 @@ function EditComment({comment, setEditModal, setShowButtons}) {
 
         const newComment = await dispatch(editCommentThunk(editedComment))
 
+        setCommentText('')
+        setCharCount(0)
+        setIsDisabled(true)
         setEditModal(false)
         setShowButtons(false)
     }
 
     return (
-        <form onSubmit={handleSubmit} className="create-comment-form">
+        <form onSubmit={handleSubmit} id={isDisabled ? "disabled" : null} className="create-comment-form">
             <input 
                 type="text"
                 name="comment_text"
                 onChange={updateCommentText}
                 value={comment_text}
             />
-            <button type="submit">Edit</button>
+            <div data-charCount={charCount} className="charcount">
+            </div>
+            <button disabled={isDisabled} type="submit">Edit</button>
         </form>
     )
 }

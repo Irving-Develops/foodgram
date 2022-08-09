@@ -68,7 +68,7 @@
 }
 
 .drop-down {
-    margin: 0 5px 0 auto;
+    margin: 0 15px 0 auto;
 }
 
 .create-comment-form{
@@ -109,8 +109,6 @@
     width: 500px;
     position: absolute;
     bottom: 0;
-}
-#comments-comp-container {
 }
 
 

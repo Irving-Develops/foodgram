@@ -4,7 +4,6 @@ import { addCommentThunk } from "../../store/comments";
 
 function CreateComment(postId) {
     const dispatch = useDispatch()
-
     const [comment_text, setCommentText] = useState('')
     const [charCount, setCharCount] = useState(0)
     const [isDisabled, setIsDisabled] = useState(true)
@@ -16,7 +15,7 @@ function CreateComment(postId) {
         if(e.target.value.length > 0 && e.target.value.length < 256) setIsDisabled(false)
         if(e.target.value.length === 0 || e.target.value.length > 255) setIsDisabled(true)
         setCommentText(comment_text)
-        setCharCount(comment_text.length)
+        setCharCount(e.target.value.length)
     }
 
     const handleSubmit = async(e) => {

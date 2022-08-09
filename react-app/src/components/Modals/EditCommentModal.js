@@ -8,7 +8,7 @@ import EditComment from '../Comments/EditComment'
 export default function EditCommentModal({comment, setShowButtons}) {
         const [showEditModal, setEditModal] = useState(false)
         const [showDeleteModal, setDeleteModal] = useState(false)
-
+        
         return (
         <div id='post-buttons'>
             <button className='delete' onClick={() => setDeleteModal(true) }>Delete</button>

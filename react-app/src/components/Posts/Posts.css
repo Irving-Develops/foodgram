@@ -14,7 +14,7 @@
     height: 600px;
 }
 .post img {
-    width: 600px;
+    width: 598px;
     height: 600px;
     object-fit: cover;
 }
@@ -30,6 +30,7 @@
     width: 42px;
     height: 42px;
     margin-right: 15px;
+    margin-left: 15px;
 }
 .user-img img{
     width: 42px;
@@ -68,4 +69,8 @@
     margin-left: auto;
     background-color: white;
     border: none;
+}
+
+#disabled button{
+    color: var(--disabled);
 }
