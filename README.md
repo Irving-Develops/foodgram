@@ -52,10 +52,6 @@ Modals are used heavily on Instagram,
 <img width="840" alt="Screen Shot 2022-08-10 at 10 17 27 AM" src="https://user-images.githubusercontent.com/96028000/183942205-bc404412-c2bf-4ca8-976b-839ecf2d5fb0.png">
 
 
-# Flask React Project
-
-This is the starter for the Flask React project.
-
 ## Getting started
 1. Clone this repository (only this branch)
 
