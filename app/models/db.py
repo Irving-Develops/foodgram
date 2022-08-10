@@ -46,7 +46,8 @@ class User(db.Model, UserMixin):
             'full_name': self.full_name,
             'email': self.email,
             'username': self.username,
-            'profile_pic': self.profile_pic
+            'profile_pic': self.profile_pic,
+            'likes': [post.id for post in self.liker]
         }
 
 
@@ -72,8 +73,8 @@ class Post(db.Model):
             'caption': self.caption,
             'user_id': self.user_id,
             'created_at': self.created_at,
-            'owner': self.owner.to_dict()
-            # 'likes': self.lik
+            'owner': self.owner.to_dict(),
+            'likes': [user.id for user in self.likes]
         }
 
 
