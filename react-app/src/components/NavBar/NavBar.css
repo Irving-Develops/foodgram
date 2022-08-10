@@ -13,13 +13,15 @@
 #navbar {
     z-index: 201;
     display: flex;
-    gap: 20%;
+    justify-content: space-between;
+    width: 30%;
+    gap: 35%;
 }
 
 #navlinks {
     display: flex;
     justify-content: flex-end;
-    width: 350px;
+    width: auto;
 }
 
 #navlinks img{

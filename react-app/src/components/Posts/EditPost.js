@@ -16,6 +16,7 @@ function EditPost({post, setEditModal, setShowButtons}) {
     //     const img = e.target.files[0]
     //     setImgUrl(img)
     // }
+
     const updateCaption = (e) => {
         const caption = e.target.value
         setCharCount(e.target.value.length)
@@ -34,7 +35,9 @@ function EditPost({post, setEditModal, setShowButtons}) {
         }
 
         await dispatch(editPostThunk(editedPost))
-
+        setCaption('')
+        setCharCount(0)
+        setIsDisabled(true)
         setEditModal(false)
         setShowButtons(false)
     }
@@ -54,8 +57,10 @@ function EditPost({post, setEditModal, setShowButtons}) {
                 onChange={updateCaption}
                 value={caption}
             />
-            <div data={charCount} className="charcount">
-            </div>
+            {charCount > 255 ? <div data={charCount} className="invalid-charcount"></div>
+            :
+            <div data={charCount} className="charcount"></div>
+            }  
         </form>
     )
 

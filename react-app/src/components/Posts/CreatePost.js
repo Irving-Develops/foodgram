@@ -11,6 +11,8 @@ function CreatePost({setCreateModal}) {
     const [charCount, setCharCount] = useState(0)
     const [isDisabled, setIsDisabled] = useState(false)
 
+    let lastClicked = 0
+
     const updateImgUrl = (e) => {
         const img = e.target.files[0]
         setImgUrl(img)
@@ -30,12 +32,15 @@ function CreatePost({setCreateModal}) {
             img_url,
             caption
         }
-
+        if (Date.now() - lastClicked < 4000) return;
+        lastClicked = Date.now()
         await dispatch(addPostThunk(post))
+
 
         setCreateModal(false)
         setCharCount(0)
         setIsDisabled(true)
+
     }
 
     return (

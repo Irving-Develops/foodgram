@@ -7,8 +7,9 @@ function CreateComment(postId) {
     const [comment_text, setCommentText] = useState('')
     const [charCount, setCharCount] = useState(0)
     const [isDisabled, setIsDisabled] = useState(true)
-
     const user = useSelector(state => state.session.user.id)
+
+    let lastClicked = 0
 
     const updateCommentText = (e) => {
         const comment_text = e.target.value
@@ -27,6 +28,9 @@ function CreateComment(postId) {
             user_id: user
         }
 
+        if (Date.now() - lastClicked < 4000) return;
+        lastClicked = Date.now()
+        
         await dispatch(addCommentThunk(comment))
 
         setCommentText('')
