@@ -86,6 +86,23 @@ const LoginForm = () => {
           </div>
         </div>
       </div>
+      <div id="footer">
+        <div id='tech'>
+          <span>Python</span>
+          <span>Flask</span>
+          <span>Javascript</span>
+          <span>React</span>
+          <span>Redux</span>
+          <span>HTML5</span>
+          <span>CSS3</span>
+          <span>Heroku</span>
+          <span>Amazon S3</span>    
+        </div>
+       <div id='login-links'>
+          <a href='https://github.com/Irving-Develops' target='_blank'>github</a>
+          <a href='https://www.linkedin.com/in/irving-arreola-palacios-5bb10414a/' target='_blank'>linkedin</a>
+       </div>
+      </div>
 
     </div>
   );
