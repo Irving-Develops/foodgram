@@ -19,7 +19,7 @@
 #navlinks {
     display: flex;
     justify-content: flex-end;
-    width: 350px;
+    width: 390px;
 }
 
 #navlinks img{
@@ -33,6 +33,7 @@
 #logo {
     display: flex;
     align-items: center;
+    margin-left: 40px;
 }
 #logo h2{
     font-size: 32px;
