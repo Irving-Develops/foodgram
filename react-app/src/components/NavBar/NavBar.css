@@ -18,7 +18,8 @@
 
 #navlinks {
     display: flex;
-    width: 300px;
+    justify-content: flex-end;
+    width: 350px;
 }
 
 #navlinks img{
