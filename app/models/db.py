@@ -73,6 +73,7 @@ class Post(db.Model):
             'user_id': self.user_id,
             'created_at': self.created_at,
             'owner': self.owner.to_dict()
+            # 'likes': self.lik
         }
 
 
