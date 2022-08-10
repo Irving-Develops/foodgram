@@ -39,7 +39,7 @@ export default function EditCommentModal({comment, setShowButtons}) {
                             <span>Edit Comment</span>
                             <div id="empty"></div>
                         </div>
-                        <div className='create-comment-container'>
+                        <div className='create-comment-container2'>
                             <EditComment comment={comment} setEditModal={setEditModal} setShowButtons={setShowButtons}/>
                         </div>
                     </div>

@@ -81,7 +81,7 @@ export const signUp = (full_name, email, username, profile_pic, password) => asy
       username,
       email,
       profile_pic,
-      password,
+      password
     }),
   });
   

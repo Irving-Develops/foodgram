@@ -73,8 +73,15 @@
 
 .input-field {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     margin-bottom: 5px;
+}
+
+.input-field label {
+    font-size: 14px;
+    color: var(--text-color);
+    padding: 5px 0;
 }
 
 .input-field input {

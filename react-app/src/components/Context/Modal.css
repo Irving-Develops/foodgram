@@ -100,6 +100,7 @@
 
 #caption {
   /* border: var(--border); */
+  word-break: break-all;
   padding: 15px;
   width: 100%;
 }

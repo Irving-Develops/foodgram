@@ -54,20 +54,22 @@ const LoginForm = () => {
                 ))}
               </div>
               <div className='input-field'>
+                <label>Email</label>
                 <input
                   name='email'
                   type='text'
-                  placeholder='Email'
+                  placeholder='e.g. johndoe@gmail.com'
                   value={email}
                   onChange={updateEmail}
                   required
                 />
               </div>
               <div className='input-field'>
+                <label>Password</label>
                 <input
                   name='password'
                   type='password'
-                  placeholder='Password'
+                  // placeholder='Password'
                   value={password}
                   onChange={updatePassword}
                   required

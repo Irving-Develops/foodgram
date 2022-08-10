@@ -3,9 +3,9 @@
     flex-direction: column;
     justify-content: center;
     margin: auto auto;
-    width: 350px;
+    width: 500px;
     min-height: 500px;
-    max-height: 600px;
+    max-height: 650px;
     background-color: white;
     border: var(--border);
 }
@@ -50,7 +50,7 @@
 }
 
 .errors {
-    width: 258px;
+    width: 50%;
     font-size: 12px;
     padding: 9px 0 7px 8px;
     color: red;
@@ -63,7 +63,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 350px;
+    width: 500px;
     height: 70px;
     margin: 10px 0 50px 0;
     background-color: white;
@@ -83,4 +83,21 @@
 
 .errors p{
     text-align: center;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+}
+
+.input label {
+    /* display: flex;
+    flex-direction: column;
+    margin-top: auto; */
+    color: var(--text-color);
+    /* text-align: end;
+    margin-right: 5px; */
+    padding: 5px;
+    font-size: 12px;
+    /* width: 110px; */
 }
