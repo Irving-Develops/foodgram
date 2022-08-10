@@ -28,7 +28,7 @@ function EditComment({comment, setEditModal, setShowButtons}) {
             user_id: comment.user_id
         }
 
-        const newComment = await dispatch(editCommentThunk(editedComment))
+        await dispatch(editCommentThunk(editedComment))
 
         setCommentText('')
         setCharCount(0)
@@ -45,7 +45,7 @@ function EditComment({comment, setEditModal, setShowButtons}) {
                 onChange={updateCommentText}
                 value={comment_text}
             />
-            <div data-charCount={charCount} className="charcount">
+            <div data={charCount} className="charcount">
             </div>
             <button disabled={isDisabled} type="submit">Edit</button>
         </form>

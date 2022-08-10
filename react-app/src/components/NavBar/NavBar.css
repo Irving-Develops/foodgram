@@ -1,4 +1,5 @@
 #navbar-container {
+    z-index: 2;
     position: fixed;
     top: 0;
     width: 100%;
@@ -6,23 +7,27 @@
     display: flex;
     justify-content: center;
     background-color: white;
-    border: 1px solid var(--grey-border)
+    border: var(--border)
 }
 
 #navbar {
+    z-index: 201;
     display: flex;
     gap: 20%;
 }
 
 #navlinks {
     display: flex;
+    width: 300px;
 }
 
 #navlinks img{
     width: 24px;
 }
 #navlinks li{
+    cursor: pointer;
     display: inline-block;
+    margin: 0 15px;
 }
 #logo {
     display: flex;
@@ -43,4 +48,18 @@ svg{
 
 .hidden {
     display: none;
+}
+
+#navlinks button {
+    border: none;
+    outline: none;
+    background-color: white;
+}
+
+#navlinks ul {
+    display: flex;
+}
+
+#navlinks img {
+    width: 26px;
 }

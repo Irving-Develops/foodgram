@@ -27,7 +27,7 @@ function CreateComment(postId) {
             user_id: user
         }
 
-        const newComment = await dispatch(addCommentThunk(comment))
+        await dispatch(addCommentThunk(comment))
 
         setCommentText('')
         setCharCount(0)
@@ -45,9 +45,9 @@ function CreateComment(postId) {
                     placeholder="Add a comment..."
                     onChange={updateCommentText}
                 />
-                {charCount > 255 || charCount === 0 ? <div data-charCount={charCount} className="invalid-charcount"></div>
+                {charCount > 255 || charCount === 0 ? <div data={charCount} className="invalid-charcount"></div>
                 :
-                <div data-charCount={charCount} className="charcount"></div>
+                <div data={charCount} className="charcount"></div>
                 }
             <button disabled={isDisabled} type="submit">Post</button>
         </form>

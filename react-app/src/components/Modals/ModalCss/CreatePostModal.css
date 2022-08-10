@@ -10,7 +10,7 @@
 #create-post-header {
     display: flex;
     text-align: center;
-    border-bottom: 1px solid var(--grey-border);
+    border-bottom: var(--border);
 }
 
 #create-post-header p {
@@ -54,7 +54,7 @@
   border: none;
   padding: 15px;
   height: 95%;
-  border-top: 1px solid var(--grey-border);
+  border-top: var(--border);
   outline: none;
   resize: none;
 }

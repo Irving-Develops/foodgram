@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React from "react"
 import { useDispatch } from "react-redux"
 import { deletePostThunk } from "../../store/posts"
 
@@ -10,7 +10,7 @@ const DeletePost = ({post, setDeleteModal, setShowButtons}) => {
     console.log(setDeleteModal, "test")
 
     const handleDelete = async() => {
-        let deleted =  await dispatch(deletePostThunk(post))
+        await dispatch(deletePostThunk(post))
         setDeleteModal(false)
         setShowButtons(false)
     }

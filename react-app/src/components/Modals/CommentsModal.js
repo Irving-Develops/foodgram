@@ -1,6 +1,3 @@
-import {useState} from 'react'
-import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
 import PostUser from '../Posts/PostOwner'
 import CommentOwner from '../Comments/CommentOwner'
 import CreateComment from '../Comments/CreateComment'
@@ -19,7 +16,7 @@ function CommentsModal({commentsArr, post}) {
 
                     <div className='comments-container'>
                             {commentsArr.slice(0).reverse().map(comment => 
-                                <CommentOwner comment={comment} />
+                                <CommentOwner key={comment.id} comment={comment} />
                             )}
                     <div className="create-comment-container" id="create-in-modal">
                         <CreateComment postId={post.id} />

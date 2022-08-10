@@ -1,6 +1,4 @@
-import {NavLink} from 'react-router-dom'
 import {useState} from 'react'
-import { Modal } from '../Context/Modal';
 import EditPostModal from '../Modals/EditPostModal'
 import { useSelector } from 'react-redux';
 
@@ -13,10 +11,11 @@ function PostOwner({post}) {
     return (
         <div className="user-container">
             <div className='user-img'>
-                <img src='https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg' alt={post.owner.username}/>
+                <img src={post.owner.profile_pic ? `${post.owner.profile_pic}` : "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"} alt={post.owner.username}/>
             </div>
             <div className="username">
-                <NavLink to={`/users/${post.owner.id}`}>{post.owner.username}</NavLink>
+                {/* <NavLink to={`/users/${post.owner.id}`}>{post.owner.username}</NavLink> */}
+                <span id="owner">{post.owner.username}</span>
             </div>
             {sessionUser === post.owner.id && !showButtons &&(
                 <div className='drop-down'>

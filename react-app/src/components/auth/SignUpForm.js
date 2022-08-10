@@ -12,7 +12,7 @@ const SignUpForm = () => {
   const [profile_pic, setProfilePic] = useState('')
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
-  const [isDisabled, setIsDisabled] = useState(true)
+  // const [isDisabled, setIsDisabled] = useState(true)
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   
@@ -63,9 +63,9 @@ const SignUpForm = () => {
     setFullName(e.target.value);
   }
 
-  const updateProfilePicture = (e) => {
-    setProfilePic(e.target.value);
-  }
+  // const updateProfilePicture = (e) => {
+  //   setProfilePic(e.target.value);
+  // }
 
   if (user) {
     return <Redirect to='/' />;

@@ -46,6 +46,7 @@ export const addPostThunk = (post) => async(dispatch) => {
         method: "POST",
         body: formData
     });
+    
     if (res.ok) {
         const post = await res.json();
         dispatch(addPost(post))

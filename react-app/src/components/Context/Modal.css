@@ -1,5 +1,6 @@
 
 #modal {
+  z-index: 3;
   position: fixed;
   top: 0;
   right: 0;
@@ -12,6 +13,7 @@
 }
 
 #modal-background {
+  z-index: 4;
   position: fixed;
   top: 0;
   right: 0;
@@ -21,11 +23,12 @@
 }
 
 #modal-content {
+  z-index: 5;
   position: absolute;
   display: flex;
   flex-direction: column;
   background-color: white;
-  /* border: 1px solid var(--grey-border); */
+  /* border: var(--border); */
   border-radius: 15px;
   margin: 15px 0;
   /* width: 400px; */
@@ -44,8 +47,8 @@
 }
 
 #post-buttons button:nth-child(2){
-  border-left: 1px solid var(--grey-border);
-  border-right: 1px solid var(--grey-border);
+  border-left: var(--border);
+  border-right: var(--border);
 }
 
 #delete-post-modal {
@@ -69,8 +72,8 @@
   border: none;
 } 
 #delete-post-modal button:nth-child(2){
-  border-top: 1px solid var(--grey-border);
-  border-bottom: 1px solid var(--grey-border);
+  border-top: var(--border);
+  border-bottom: var(--border);
 }
 
 .delete {
@@ -91,12 +94,12 @@
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  border: 1px solid var(--grey-border);
+  border: var(--border);
   height: 42px;
 }
 
 #caption {
-  /* border: 1px solid var(--grey-border); */
+  /* border: var(--border); */
   padding: 15px;
   width: 100%;
 }

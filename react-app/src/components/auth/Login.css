@@ -11,6 +11,7 @@
 #login-container {
     display: flex;
     align-items: center;
+    margin-left: 150px;
 }
 
 #login-image {
@@ -28,7 +29,7 @@
 #login-image img:last-child {
     width: 250px;
     position: relative;
-    top: -22px;
+    top: -21.5px;
     right: 309px;
 }
 
@@ -50,7 +51,7 @@
     justify-content: center;
     align-items: center;
     background-color: white;
-    border: 1px solid var(--grey-border);
+    border: var(--border);
     width: 350px;
     height: 400px;
 }
@@ -78,7 +79,7 @@
     padding-left: 5px;
     background-color: var(--grey-bg);
     outline: none;
-    border: 1px solid var(--grey-border);
+    border: var(--border);
     border-radius: 2px;
 }
 /* BUTTON STYLES */
@@ -111,7 +112,7 @@
 .button-blue h4:before,
 .button-blue h4:after {
     content: '';
-    border-top: 1px solid var(--grey-border);
+    border-top: var(--border);
 }
 
 .button-blue a {
@@ -130,7 +131,7 @@
     margin: 10px 0 50px 0;
     background-color: white;
     text-align: center;
-    border: 1px solid var(--grey-border);
+    border: var(--border);
 }
 
 #sign-up a {

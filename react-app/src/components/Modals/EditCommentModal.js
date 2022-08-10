@@ -1,5 +1,4 @@
 import {useState} from 'react'
-import { NavLink } from 'react-router-dom'
 import { Modal } from '../Context/Modal'
 import './ModalCss/DeleteModal.css'
 import DeleteComment from '../Comments/DeleteComment'

@@ -31,7 +31,7 @@ function CreatePost({setCreateModal}) {
             caption
         }
 
-        const newPost = await dispatch(addPostThunk(post))
+        await dispatch(addPostThunk(post))
 
         setCreateModal(false)
         setCharCount(0)
@@ -60,9 +60,9 @@ function CreatePost({setCreateModal}) {
                     onChange={updateCaption}
                     value={caption}
                 />
-                {charCount > 255 ? <div data-charCount={charCount} className="invalid-charcount"></div>
+                {charCount > 255 ? <div data={charCount} className="invalid-charcount"></div>
                 :
-                <div data-charCount={charCount} className="charcount"></div>
+                <div data={charCount} className="charcount"></div>
                 }  
             </div>
         </form>

@@ -6,16 +6,16 @@ import { editPostThunk } from "../../store/posts";
 function EditPost({post, setEditModal, setShowButtons}) {
     const dispatch = useDispatch()
 
-    const [img_url, setImgUrl] = useState(post.img_url)
+    const [img_url,] = useState(post.img_url)
     const [caption, setCaption] = useState(post.caption)
     const [charCount, setCharCount] = useState(post.caption.length)
     const [isDisabled, setIsDisabled] = useState(false)
 
 
-    const updateImgUrl = (e) => {
-        const img = e.target.files[0]
-        setImgUrl(img)
-    }
+    // const updateImgUrl = (e) => {
+    //     const img = e.target.files[0]
+    //     setImgUrl(img)
+    // }
     const updateCaption = (e) => {
         const caption = e.target.value
         setCharCount(e.target.value.length)
@@ -33,7 +33,7 @@ function EditPost({post, setEditModal, setShowButtons}) {
             caption
         }
 
-        const newPost = await dispatch(editPostThunk(editedPost))
+        await dispatch(editPostThunk(editedPost))
 
         setEditModal(false)
         setShowButtons(false)
@@ -54,7 +54,7 @@ function EditPost({post, setEditModal, setShowButtons}) {
                 onChange={updateCaption}
                 value={caption}
             />
-            <div data-charCount={charCount} className="charcount">
+            <div data={charCount} className="charcount">
             </div>
         </form>
     )
