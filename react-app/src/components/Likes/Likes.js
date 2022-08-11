@@ -1,11 +1,20 @@
-import React, {useEffect} from "react"
-
+import React, {useState} from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { addLikeThunk, editPostThunk } from "../../store/posts"
 
 export default function Likes({post}){
-    //     const handleLike = async() => {
-    //     if(sessionUser.likes.includes)
-    // }
+    const dispatch = useDispatch()
+    const sessionUser = useSelector(state => state.session.user.id)
+
+    const handleLike = async() => {
+        if(post.likes.includes(sessionUser)){
+
+        }else {
+            console.log("working")
+            dispatch(addLikeThunk(post))
+        }
+    }
     return (
-        <h1>Test</h1>
+        <button onClick={handleLike}>Like</button>
     )
 }

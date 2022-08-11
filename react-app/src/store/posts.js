@@ -76,6 +76,23 @@ export const editPostThunk= (post) => async(dispatch) => {
     }
 }
 
+export const addLikeThunk = (post) => async(dispatch) => {
+    const res = await fetch(`/api/likes/${post.id}/like`,{
+        method: 'PUT',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(post)
+    })
+
+    if(res.ok) {
+        console.log("working in thunk")
+        const like = await res.json();
+        dispatch(editPost(like))
+        return post
+    }
+}
+
 export const deletePostThunk = (post) => async (dispatch) => {
     // const {id} = post
   const response = await fetch(`/api/posts/${post.id}`, {
