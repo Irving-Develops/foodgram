@@ -8,6 +8,7 @@ function CommentOwner({comment, showPic}) {
     const sessionUser = useSelector(state => state.session.user.id)
     const [showButtons, setShowButtons] = useState(false)
     // let date = comment.created_at.getTime()
+    console.log()
 
     return (
         <div className="comment-container" >
