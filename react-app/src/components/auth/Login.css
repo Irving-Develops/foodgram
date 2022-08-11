@@ -42,6 +42,7 @@
 }
 #content {
     display: flex;
+    height: 90%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -55,7 +56,7 @@
     background-color: white;
     border: var(--border);
     width: 350px;
-    height: 400px;
+    min-height: 400px;
 }
 #form input {
     width: 250px;
@@ -96,6 +97,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 40px;
 }
 .button-blue button {
     background-color: var(--blue-button);

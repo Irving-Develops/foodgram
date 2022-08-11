@@ -136,6 +136,7 @@ const SignUpForm = () => {
               <input
                 type='password'
                 name='password'
+                minLength={4}
                 placeholder='Must be atleast 4 characters long'
                 onChange={updatePassword}
                 value={password}

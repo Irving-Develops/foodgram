@@ -39,16 +39,14 @@ def email_length(form, field):
     if len(email) > 255:
         raise ValidationError('Email cannot be longer than 255 characters')
 
-# def matching_passwords(form, field):
-#     confirm_password = field.data
-#     password = field.data
-#     if (confirm_password != password):
-#         raise ValidationError('Passwords must match')
+def password_length(form, field):
+    password = field.data
+    if len(password) < 4:
+        raise ValidationError('Passwords must be more than 4 characters long')
 
 class SignUpForm(FlaskForm):
     full_name = StringField('full name', validators=[DataRequired(), full_name_length])
     username = StringField('username', validators=[DataRequired(), username_exists, username_length])
     email = StringField('email', validators=[DataRequired(), user_exists, email_length])
     profile_pic = StringField('profile picture')
-    password = StringField('password', validators=[DataRequired()])
-    # confirm_password = StringField('confirm_password', validators=[DataRequired()])
+    password = StringField('password', validators=[DataRequired(), password_length])
