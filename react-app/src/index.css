@@ -21,3 +21,8 @@ body {
     font-family: 'Roboto', sans-serif;
 
 }
+
+input::placeholder {
+    color: var(--grey-border);
+    opacity: .2;
+}

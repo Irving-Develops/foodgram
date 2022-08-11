@@ -107,7 +107,6 @@ const SignUpForm = () => {
               <input
                 type='text'
                 name='full_name'
-                placeholder='e.g. John Doe'
                 onChange={updateFullName}
                 value={full_name}
                 required
@@ -118,7 +117,6 @@ const SignUpForm = () => {
               <input
                 type='text'
                 name='username'
-                placeholder='e.g jdoe24'
                 onChange={updateUsername}
                 value={username}
                 required
@@ -148,7 +146,6 @@ const SignUpForm = () => {
               <input
                 type='password'
                 name='confirm_password'
-                placeholder='Confirm password'
                 onChange={updateRepeatPassword}
                 value={confirm_password}
                 required
