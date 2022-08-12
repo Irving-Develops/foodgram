@@ -1,6 +1,8 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User
+from app.models import db, User
+from app.s3_helpers import (upload_file_to_s3, allowed_file, get_unique_filename)
+
 
 user_routes = Blueprint('users', __name__)
 
@@ -18,10 +20,11 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
-@user_routes.route("/<int:id>" methods=['PUT'])
+@user_routes.route("/<int:id>", methods=['PUT'])
 @login_required
 def edit_user(id):
     user = User.query.get(id)
+
 
 
     if "profile_pic" not in request.files:
@@ -29,6 +32,7 @@ def edit_user(id):
 
     profile_pic = request.files["profile_pic"]
 
+    print('\n \n \n pic', profile_pic)
     if not allowed_file(profile_pic.filename):
         return {"errors": "file type not permitted"}, 400
     
@@ -42,6 +46,7 @@ def edit_user(id):
         return upload, 400
 
     url = upload["url"]
+
 
     user.profile_pic = url
     db.session.commit()

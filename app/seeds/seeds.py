@@ -4,11 +4,11 @@ from app.models import db, User, Post, Comment, likes
 # Adds a demo user, you can add other users here if you want
 def seed_all():
     demo = User(
-        full_name='Demo User', email='demo@aa.io', username='Demo',  profile_pic='', password='password')
+        full_name='Demo User', email='demo@aa.io', username='Demo',  password='password')
     marnie = User(
-        full_name= "Marnie McBean", email='marnie@aa.io', username='marnie', profile_pic='', password='password')
+        full_name= "Marnie McBean", email='marnie@aa.io', username='marnie', password='password')
     bobbie = User(
-        full_name="Bobby Flay", email='bobbie@aa.io', username='bobbie', profile_pic='', password='password')
+        full_name="Bobby Flay", email='bobbie@aa.io', username='bobbie', password='password')
 
     post1 = Post( img_url="https://houseofyumm.com/wp-content/uploads/2021/01/Birria-de-Res-9.jpg", caption="Had these delicious birria tacos at Los 2 Brothers. Defititely recommend!", user_id=1)
     post2 = Post( img_url="https://preview.redd.it/zg28x4wewll11.jpg?auto=webp&s=22dbcb27dfa245c9c4a40e814870cdc529701dee", caption="Amazing night out at Sushi Saito. It was incredible watching Chef Takashi Saito prepare our courses in front of us!", user_id= 2)

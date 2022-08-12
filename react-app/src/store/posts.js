@@ -37,11 +37,12 @@ export const getPostsThunk = () => async(dispatch) => {
 
 export const addPostThunk = (post) => async(dispatch) => {
     const {img_url, caption} = post
-
+    
     const formData = new FormData()
     formData.append('img_url', img_url)
     formData.append('caption', caption)
-
+    
+    console.log(formData, "inside post thunk")
     const res = await fetch('/api/posts', {
         method: "POST",
         body: formData
