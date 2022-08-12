@@ -8,7 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
 import AllPosts from './components/Posts/AllPosts';
 import User from './components/User/User'
-
+import Search from './components/Search/search';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -45,6 +45,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact>
             <NavBar />
             <User />
+        </ProtectedRoute>
+        <ProtectedRoute path='/test'>
+          <Search />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

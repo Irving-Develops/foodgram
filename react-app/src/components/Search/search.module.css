@@ -1,0 +1,33 @@
+.searchContainer {
+    height: 450px;
+    width: 375px;
+    background-color: white;
+    color: var(--text-color);
+}
+
+.searchUserImg {
+    width: 54px;
+    height: 54px;
+}
+.searchUserImg img {
+    border-radius: 100%;
+    width: 54px;
+    height: 54px;
+    object-fit: cover;
+}
+
+.userContainer {
+    display: flex;
+    align-items: center;
+}
+
+.searchContainer {
+    position: absolute;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.searchContainer a {
+    color: var(--text-color);
+    text-decoration: none;
+}

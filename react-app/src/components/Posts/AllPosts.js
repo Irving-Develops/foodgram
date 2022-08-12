@@ -1,5 +1,6 @@
 import React, {useEffect} from "react"
 import {useDispatch, useSelector} from 'react-redux'
+import { NavLink } from "react-router-dom"
 import { getPostsThunk } from "../../store/posts"
 import AllComments from "../Comments/AllComments"
 import CreateComment from "../Comments/CreateComment"
@@ -34,8 +35,8 @@ function AllPosts(){
                         <img src={post.img_url} alt="delicious platter" />
                     </div>
                     <div className="caption-container">
-                        {/* <NavLink to={`/user/${post.user_id}`} id='owner'>{post.owner.username} </NavLink><span id="caption">{post.caption}</span> */}
-                        <span id="owner">{post.owner.username}</span><span id="caption">{post.caption}</span>
+                        <NavLink to={`/user/${post.user_id}`} id='owner'>{post.owner.username} </NavLink><span id="caption">{post.caption}</span>
+                        {/* <span id="owner">{post.owner.username}</span><span id="caption">{post.caption}</span> */}
                     </div>
                     <div> 
                         <Likes post={post} />
