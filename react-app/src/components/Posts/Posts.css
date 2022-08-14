@@ -45,6 +45,7 @@
     width: 42px;
     height: 42px;
     object-fit: cover;
+    border-radius: 100%;
 }
 
 .username a{

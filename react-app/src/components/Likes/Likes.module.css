@@ -1,0 +1,13 @@
+.likesContainer {
+ display: flex;
+ flex-direction: column;
+}
+
+.likeSvg {
+    fill: red;
+    color: red;
+}
+
+.likesContainer span {
+    font-weight: bold;
+}
