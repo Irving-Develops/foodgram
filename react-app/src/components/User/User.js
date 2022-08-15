@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux'
-import { Modal } from '../Context/Modal'
 import classes from './User.module.css'
+import { Modal } from '../Context/Modal';
 import { getPostsThunk } from '../../store/posts';
 import { getUsersThunk } from '../../store/users'
 import EditProfile from './EditProfilePic';
-
+import AllComments from '../Comments/AllComments';
 
 function User() {
   const dispatch = useDispatch()
   const { userId }  = useParams();
   const [showEditModal, setEditModal] = useState(false)
+  const [showCommentModal2, setCommentModal2] = useState(false)
   const sessionUser = useSelector(state => state.session.user)
   const allUsers = useSelector(state => state.users)
   const posts = useSelector(state => state.posts)
@@ -22,8 +23,6 @@ function User() {
     console.log(posts)
     myPosts = Object.values(posts).filter(post => post.owner.id === parseInt(userId))
   } 
-
-
 
   useEffect(() => {
     dispatch(getPostsThunk())
@@ -80,9 +79,10 @@ function User() {
 
 
       <div className={classes.userPostsContainer}>
-          {myPosts  && myPosts.map(post => (
+          {myPosts  && myPosts.map(post =>  (
             <div className={classes.imgWrapper} key={post.id}>
               <img src={post.img_url} alt="image" /> 
+              <AllComments post={post} isSvg={false} isOverlay={true}/>
             </div>
           ))}
       </div>

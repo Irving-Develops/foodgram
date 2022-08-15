@@ -36,7 +36,7 @@ function AllPosts(){
                     </div>
                     <div className="svg-container"> 
                         <Likes post={post} />
-                        <AllComments post={post} isSvg={true}/>
+                        <AllComments post={post} isSvg={true} isOverlay={false} />
                     </div>
                     {post.caption ?
                     <div className="caption-container">

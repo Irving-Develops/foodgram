@@ -49,13 +49,13 @@ export default function Search() {
             {openSearchBox && (
                 <div className={classes.searchContainer}> 
                     {search && search.map(user => (
-                    <Link to={`/users/${user.id}`} key={user.id}>
+                    <Link to={`/users/${user.id}`} key={user.id} onClick={() => setOpenSearchBar(false)}>
                         <div className={classes.userContainer} key={user.id}>
                             <div className={classes.searchUserImg}> 
                                 <img src={user.profile_pic} alt='user' />
                             </div>
                             <div className={classes.userNames}>
-                                    <span classeName={classes.username}>{user.username}</span>
+                                <span classeName={classes.username}>{user.username}</span>
                                 <span classeName={classes.fullName}>{user.full_name}</span>
                             </div>
                         </div>
