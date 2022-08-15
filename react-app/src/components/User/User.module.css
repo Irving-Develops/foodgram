@@ -1,5 +1,15 @@
+.userContainer {
+    display: flex;
+    flex-direction: column;
+    width: 896px;
+    margin: 0 auto;
+}
+
 .userDetails {
     display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 0 auto 44px auto;
     margin-top: 100px;
 }
 
@@ -10,12 +20,32 @@
     object-fit: cover;
 }
 
+.userDetails span {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.userImg {
+    display: flex;
+    justify-content: center;
+    width: 291px;
+}
+.postNum {
+    margin-bottom: 20px;
+}
+
+.postNum span{
+    font-weight: 400;
+}
+
 .userPostsContainer {
     display: grid;
     grid-template-columns: repeat(3, 280px);
     justify-content: center;
     margin: 0 auto;
-    width: 80%;
+    padding-top: 53px;
+    border-top: var(--border) ;
+    width: 100%;
     gap: 28px;
 }
 
@@ -26,6 +56,36 @@
 .imgWrapper img {
     width: 100%;
     height: 280px;
+    object-fit: cover;
+}
+
+.userHeader {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.userHeader h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.userHeader button {
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    width: 93px;
+    height: 30px;
+    padding: 5px 9px;
+    background-color: white;
+    border: var(--border);
+    border-radius: 3px;
+}
+
+.modalContainer img{
+    width: 100px;
+    height: 100px;
     object-fit: cover;
 }
 
