@@ -34,13 +34,19 @@ function AllPosts(){
                     <div className="post"> 
                         <img src={post.img_url} alt="delicious platter" />
                     </div>
+                    <div className="svg-container"> 
+                        <Likes post={post} />
+                        <AllComments post={post} isSvg={true}/>
+                    </div>
+                    {post.caption ?
                     <div className="caption-container">
-                        <NavLink to={`/user/${post.user_id}`} id='owner'>{post.owner.username} </NavLink><span id="caption">{post.caption}</span>
+                        <NavLink to={`/user/${post.user_id}`} id='owner'>{post.owner.username}</NavLink><span id="caption">{post.caption}</span>
                         {/* <span id="owner">{post.owner.username}</span><span id="caption">{post.caption}</span> */}
                     </div>
-                    <div> 
-                        <Likes post={post} />
-                    </div>
+                    :
+                    null
+                }
+
                     <div> 
                         <AllComments post={post} />
                     </div>

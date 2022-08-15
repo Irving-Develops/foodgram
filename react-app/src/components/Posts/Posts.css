@@ -38,8 +38,8 @@
 .user-img {
     width: 42px;
     height: 42px;
-    margin-right: 15px;
-    margin-left: 15px;
+    margin-right: 12px;
+    margin-left: 12px;
 }
 .user-img img{
     width: 42px;
@@ -61,7 +61,7 @@
 /* CAPTION SECTION */
 .caption-container {
     font-size: 14px;
-    margin: 15px;
+    margin: 12px;
 }
 
 #owner {
@@ -84,4 +84,11 @@
 #disabled button{
     color: red;
     cursor: not-allowed
+}
+
+
+.svg-container {
+    display: flex;
+    margin: 12px;
+    gap: 12px;
 }

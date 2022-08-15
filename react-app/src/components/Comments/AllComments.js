@@ -6,7 +6,7 @@ import { Modal } from "../Context/Modal"
 import CommentsModal from "../Modals/CommentsModal"
 import CommentOwner from "./CommentOwner"
 
-function AllComments({post}) {
+function AllComments({post, isSvg}) {
     const dispatch = useDispatch()
     const comments = useSelector(state => state.comments)
     const sessionUser = useSelector(state => state.session.user.id)
@@ -30,8 +30,11 @@ function AllComments({post}) {
     if(!comments) return null
     return (
         <div id="view-comments">
-            {commentCount > 0 && (
+            {!isSvg && commentCount > 0 && (
                 <p onClick={() => setCommentModal(true)}>view all {commentCount} comments</p>
+            )}
+            {isSvg && (
+                <svg onClick={() => setCommentModal(true)} aria-label="Comment" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path></svg>
             )}
             {showCommentModal && (
                 <Modal onClose={() => setCommentModal(false)}>
@@ -39,7 +42,7 @@ function AllComments({post}) {
                 </Modal>
             )}
             <div className="comments-container">
-                {myComments && myComments.map(comment => 
+                {!isSvg && myComments && myComments.map(comment => 
                     <CommentOwner key={comment.id} comment={comment} showPic={showPic}/>
                 )}
             </div>

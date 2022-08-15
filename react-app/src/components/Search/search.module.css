@@ -33,14 +33,15 @@
 }
 
 .searchUserImg {
-    width: 54px;
-    height: 54px;
+    min-width: 54px;
+    min-height: 54px;
 }
 .searchUserImg img {
     border-radius: 100%;
     width: 54px;
     height: 54px;
     object-fit: cover;
+    margin: 12px;
 }
 
 .userContainer {
@@ -59,4 +60,19 @@
 .searchContainer a {
     color: var(--text-color);
     text-decoration: none;
+}
+
+.userNames{
+    display: flex;
+    font-size: 14px;
+    gap: 6px;
+    flex-direction: column;
+}
+
+.userNames span:first-child {
+    font-weight: bold;
+}
+
+.userNames span:last-child {
+    color: var(--grey-text);
 }

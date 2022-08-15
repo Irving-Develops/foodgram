@@ -32,9 +32,16 @@
 
 
 #navlinks img{
+    cursor: pointer;
     width: 24px;
     margin-bottom: 3px;
 }
+
+#navlinks svg {
+    cursor: pointer;
+    
+}
+
 #navlinks li{
     cursor: pointer;
     display: inline-block;

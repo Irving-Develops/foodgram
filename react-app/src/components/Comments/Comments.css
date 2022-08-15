@@ -73,7 +73,7 @@
 }
 
 .drop-down {
-    margin: 0 15px 0 auto;
+    margin: 0 12px 0 auto;
 }
 
 .create-comment-form{
@@ -103,7 +103,7 @@
 
 #view-comments  p{
     font-size: 14px;
-    margin-left: 15px;
+    margin: 12px;
     color: var(--grey-text)
 }
 

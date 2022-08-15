@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
     full_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     username = db.Column(db.String(50), nullable=False, unique=True)
-    profile_pic = db.Column(db.String(255), default='https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg')
+    profile_pic = db.Column(db.String(255), default='https://scontent-gru1-2.cdninstagram.com/v/t51.288…0JqLVTh1NgMlWSW-syOCHA&oe=6300438F&_nc_sid=cff2a4')
     hashed_password = db.Column(db.String(255), nullable=False)
 
     # Relationships
