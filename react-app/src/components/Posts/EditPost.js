@@ -20,8 +20,8 @@ function EditPost({post, setEditModal, setShowButtons}) {
     const updateCaption = (e) => {
         const caption = e.target.value
         setCharCount(e.target.value.length)
-        if(e.target.value.length > 0 && e.target.value.length < 256) setIsDisabled(false)
-        if(e.target.value.length === 0 || e.target.value.length >= 256) setIsDisabled(true)
+        if(e.target.value.length >= 0 && e.target.value.length < 256) setIsDisabled(false)
+        if(e.target.value.length >= 256) setIsDisabled(true)
         setCaption(caption)
     }
 

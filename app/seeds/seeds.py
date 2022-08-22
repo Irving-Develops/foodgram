@@ -28,6 +28,12 @@ def seed_all():
     post3.likes.append(marnie)
     post3.likes.append(bobbie)
 
+    demo.followed.append(marnie)
+    marnie.followed.append(bobbie)
+    bobbie.followed.append(demo)
+    bobbie.followed.append(marnie)
+
+
 
     db.session.add(demo)
     db.session.add(marnie)
