@@ -1,5 +1,6 @@
-from flask import Blueprint, jsonify, request
-from flask_login import login_required
+from flask import Blueprint, jsonify, request, redirect, url_for
+from app.forms import EmptyForm
+from flask_login import login_required, current_user
 from app.models import db, User
 from app.s3_helpers import (upload_file_to_s3, allowed_file, get_unique_filename)
 
@@ -49,5 +50,35 @@ def edit_user(id):
 
 
     user.profile_pic = url
+    db.session.commit()
+    return user.to_dict()
+
+# @app.route('/follow/test', methods=['POST'])
+# @login_required
+# def follow():
+#     print(test)
+#     return "hello"
+
+
+
+@user_routes.route('/follow/<int:id>', methods=['PATCH'])
+@login_required
+def follow(id):
+    # form = EmptyForm()
+    # if form.validate_on_submit():
+    user = User.query.get(id)
+    # user.followers.append(current_user)
+    # current_user.followed(user)
+    current_user.follow(user)
+    # user.followers.append(current_user)
+    db.session.commit()
+    return user.to_dict()
+
+
+@user_routes.route('/unfollow/<int:id>', methods=['PATCH'])
+@login_required
+def unfollow(id):
+    user = User.query.get(id)
+    current_user.unfollow(user)
     db.session.commit()
     return user.to_dict()

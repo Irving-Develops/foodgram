@@ -1,7 +1,6 @@
 const GET_USERS = 'users/GET_USERS'
 // const ADD_USER = 'user/ADD_USER'
 const EDIT_USER = 'user/EDIT_USER'
-// const DELETE_USER = 'user/DELETE_USER'
 
  export const getUsers = (users) => ({
     type: GET_USERS,
@@ -42,40 +41,38 @@ export const editUserThunk = (user) => async(dispatch) => {
 
 }
 
-// const editUser = (user) => ({
-//   type: EDIT_USER,
-//   user
-// })
-// export const getUsersThunk = () => async(dispatch) => {
-//     const res = await fetch('/api/users')
+export const followUserThunk = (user) => async(dispatch) => {
+  const res = await fetch(`/api/users/follow/${user.id}`, {
+    method: 'PATCH',
+    headers: {
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(user)
+  })
+  
+  if(res.ok) {
+    const following = await res.json();
+    console.log(following, "in follow")
+    dispatch(editUser(following))
+    return following
+  }
+}
 
-//     if(res.ok) {
-//         const data = await res.json()
-//         dispatch(getUsers(data.users))
-//     } else {
-//       const err = await res.json();
-//       throw err;
-//     }
-
-// }
-
-// export const editUserThunk = (user) => async(dispatch) => {
-//   const {profile_pic} = user
-//   const formData = new FormData()
-//   formData.append('profile_pic', profile_pic)
-
-//   const res = await fetch(`/api/user/${user.id}`, {
-//     method: 'PUT',
-//     body: formData
-//   })
-
-//   if(res.ok) {
-//     const user = await res.json();
-//     dispatch(editUser(user))
-//     return user
-//   }
-
-// }
+export const unfollowUserThunk = (user) => async(dispatch) => {
+  const res = await fetch(`/api/users/unfollow/${user.id}`, {
+    method: 'PATCH',
+    headers: {
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(user)
+  })
+    if(res.ok) {
+    const unfollowing = await res.json();
+    console.log(unfollowing, "in unollow")
+    dispatch(editUser(unfollowing))
+    return unfollowing
+  }
+}
 
 
 export default function userReducer(state = {}, action){

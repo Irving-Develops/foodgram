@@ -2,6 +2,8 @@
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
 const EDIT_USER = 'session/EDIT_USER'
+const FOLLOW_USER = 'session/FOLLOW_USER'
+const UNFOLLOW_USER = 'session/UNFOLLOW_USER'
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -147,6 +149,36 @@ export const editUserThunk = (user) => async(dispatch) => {
     return user
   }
 
+}
+
+export const followUserThunk = (user) => async(dispatch) => {
+  const res = await fetch(`/api/users/follow/${user.username}`, {
+    method: 'PATCH',
+    headers: {
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(user)
+  })
+  if(res.ok) {
+    const following = await res.json();
+    dispatch(editUser(following))
+    return following
+  }
+}
+
+export const unfollowUserThunk = (user) => async(dispatch) => {
+  const res = await fetch(`/api/users/unfollow/${user.username}`, {
+    method: 'PATCH',
+    headers: {
+    'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(user)
+  })
+    if(res.ok) {
+    const unfollowing = await res.json();
+    dispatch(editUser(unfollowing))
+    return unfollowing
+  }
 }
 
 export default function reducer(state = initialState, action) {

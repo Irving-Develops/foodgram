@@ -82,7 +82,7 @@
 }
 
 #disabled button{
-    color: red;
+    color: var(--disabled);
     cursor: not-allowed
 }
 

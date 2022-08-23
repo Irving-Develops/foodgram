@@ -9,6 +9,7 @@ import { authenticate } from './store/session';
 import AllPosts from './components/Posts/AllPosts';
 import User from './components/User/User'
 import Search from './components/Search/search';
+import Chat from './components/Chat/Chat';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,6 +50,9 @@ function App() {
         <ProtectedRoute path='/test'>
           <Search />
         </ProtectedRoute>
+        <Route path='/test' exact={true} >
+          <Chat />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

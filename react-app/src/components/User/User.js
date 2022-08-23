@@ -7,6 +7,7 @@ import { getPostsThunk } from '../../store/posts';
 import { getUsersThunk } from '../../store/users'
 import EditProfile from './EditProfilePic';
 import AllComments from '../Comments/AllComments';
+import Follow from '../Follow/Follow';
 
 function User() {
   const dispatch = useDispatch()
@@ -48,6 +49,9 @@ function User() {
               <button onClick={() => setEditModal(true)}>Edit Profile</button>
             </div>
           )}
+          <div>
+            <Follow user={user}/>
+          </div>
 
           {showEditModal && sessionUser.id === user.id &&  (
             <Modal className={classes.modalContainer} onClose={() => {

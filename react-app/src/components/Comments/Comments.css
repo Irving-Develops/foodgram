@@ -142,7 +142,7 @@
     content: attr(data) "/255";
     border-top: var(--border);
     font-size: 10px;
-    color: var(--grey-text);
+    color: var(--blue-button);
 }
 
 .invalid-charcount::after {
@@ -153,5 +153,5 @@
     content: attr(data) "/255";
     border-top: var(--border);
     font-size: 10px;
-    color: red;
+    color: var(--disabled);
 }

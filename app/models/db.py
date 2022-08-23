@@ -25,7 +25,7 @@ class User(db.Model, UserMixin):
     full_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     username = db.Column(db.String(50), nullable=False, unique=True)
-    profile_pic = db.Column(db.String(255), default='https://scontent-gru1-2.cdninstagram.com/v/t51.288…0JqLVTh1NgMlWSW-syOCHA&oe=6300438F&_nc_sid=cff2a4')
+    profile_pic = db.Column(db.String(255), default='https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg?20200418092106')
     hashed_password = db.Column(db.String(255), nullable=False)
 
     # Relationships
@@ -40,6 +40,7 @@ class User(db.Model, UserMixin):
     backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
 
 
+
     @property
     def password(self):
         return self.hashed_password
@@ -52,13 +53,16 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
+        print("\n \n \n self.followed", [vars(user) for user in self.followers], "\n \n \n ")
         return {
             'id': self.id,
             'full_name': self.full_name,
             'email': self.email,
             'username': self.username,
             'profile_pic': self.profile_pic,
-            'likes': [post.id for post in self.liker]
+            'likes': [post.id for post in self.liker],
+            # 'following': [user.id for user in self.followed],
+            'followers': [user.id for user in self.followers]
         }
     
     def follow(self, user):
@@ -72,6 +76,13 @@ class User(db.Model, UserMixin):
     def is_following(self, user):
         return self.followed.filter(
             followers.c.followed_id == user.id).count() > 0
+
+    def followed_posts(self):
+        followed = Post.query.join(
+            followers, (followers.c.followed_id == Post.user_id)).filter(
+                followers.c.follower_id == self.id)
+        own = Post.query.filter_by(user_id=self.id)
+        return followed.union(own).order_by(Post.timestamp.desc())
 
 
 class Post(db.Model):
