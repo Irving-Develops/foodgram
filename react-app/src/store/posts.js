@@ -42,7 +42,6 @@ export const addPostThunk = (post) => async(dispatch) => {
     formData.append('img_url', img_url)
     formData.append('caption', caption)
     
-    console.log(formData, "inside post thunk")
     const res = await fetch('/api/posts', {
         method: "POST",
         body: formData
@@ -115,7 +114,6 @@ export const removeLikeThunk = (post) => async(dispatch) => {
         body: JSON.stringify(post)
     })
         if(res.ok) {
-        console.log("working in thunk")
         const like = await res.json();
         dispatch(editPost(like))
         return like

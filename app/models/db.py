@@ -53,7 +53,6 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
-        print("\n \n \n self.followed", [vars(user) for user in self.followers], "\n \n \n ")
         return {
             'id': self.id,
             'full_name': self.full_name,

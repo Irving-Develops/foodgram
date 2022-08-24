@@ -52,7 +52,6 @@ export const followUserThunk = (user) => async(dispatch) => {
   
   if(res.ok) {
     const following = await res.json();
-    console.log(following, "in follow")
     dispatch(editUser(following))
     return following
   }
@@ -68,7 +67,6 @@ export const unfollowUserThunk = (user) => async(dispatch) => {
   })
     if(res.ok) {
     const unfollowing = await res.json();
-    console.log(unfollowing, "in unollow")
     dispatch(editUser(unfollowing))
     return unfollowing
   }

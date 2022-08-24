@@ -18,7 +18,6 @@ def add_likes(id):
 @login_required
 def remove_likes(id):
     post = Post.query.get(id)
-    print(post.likes, "\n \n \n")
     post.likes.remove(current_user)
     db.session.commit()
     return post.to_dict()

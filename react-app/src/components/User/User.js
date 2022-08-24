@@ -18,10 +18,10 @@ function User() {
   const allUsers = useSelector(state => state.users)
   const posts = useSelector(state => state.posts)
   const user = Object.values(allUsers).filter(user => user.id === parseInt(userId))[0]
+  const following = Object.values(allUsers).filter(otherUsers => otherUsers.followers.includes(user.id)).length
 
   let myPosts;
   if(posts){
-    console.log(posts)
     myPosts = Object.values(posts).filter(post => post.owner.id === parseInt(userId))
   } 
 
@@ -49,8 +49,18 @@ function User() {
               <button onClick={() => setEditModal(true)}>Edit Profile</button>
             </div>
           )}
-          <div>
+          {user.id !== sessionUser.id ?
+          <div className={classes.userHeader}>
+            <h2>{user.username}</h2>
             <Follow user={user}/>
+          </div>
+          :
+          null
+          }
+
+          <div>
+            <p>Followers {user.followers.length}</p>
+            <p>Following {following}</p>
           </div>
 
           {showEditModal && sessionUser.id === user.id &&  (

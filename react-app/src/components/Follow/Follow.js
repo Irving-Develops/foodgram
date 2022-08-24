@@ -11,13 +11,10 @@ export default function Follow({user}) {
     const [following, setFollowing] = useState(false)
     
     let currentUser = Object.values(users).filter(user => user.id === sessionUser.id)
-    console.log(currentUser, "current")
 
-    // console.log(user.followers.includes())
     const handleSubmit = async(e) => {
         e.preventDefault()
         if(user.followers.includes(currentUser[0].id)){
-            console.log("working")
             await dispatch(unfollowUserThunk(user))
             setFollowing(false)
         }else {

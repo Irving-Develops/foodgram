@@ -33,7 +33,6 @@ def edit_user(id):
 
     profile_pic = request.files["profile_pic"]
 
-    print('\n \n \n pic', profile_pic)
     if not allowed_file(profile_pic.filename):
         return {"errors": "file type not permitted"}, 400
     
@@ -53,24 +52,12 @@ def edit_user(id):
     db.session.commit()
     return user.to_dict()
 
-# @app.route('/follow/test', methods=['POST'])
-# @login_required
-# def follow():
-#     print(test)
-#     return "hello"
-
-
 
 @user_routes.route('/follow/<int:id>', methods=['PATCH'])
 @login_required
 def follow(id):
-    # form = EmptyForm()
-    # if form.validate_on_submit():
     user = User.query.get(id)
-    # user.followers.append(current_user)
-    # current_user.followed(user)
     current_user.follow(user)
-    # user.followers.append(current_user)
     db.session.commit()
     return user.to_dict()
 

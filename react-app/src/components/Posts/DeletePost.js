@@ -7,7 +7,6 @@ const DeletePost = ({post, setDeleteModal, setShowButtons}) => {
     
     const dispatch = useDispatch()
 
-    console.log(setDeleteModal, "test")
 
     const handleDelete = async() => {
         await dispatch(deletePostThunk(post))

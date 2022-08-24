@@ -37,7 +37,6 @@ def add_comment():
 @login_required
 def edit_comment(id):
     comment = Comment.query.get(id)
-    print(comment, "\n inside put \n")
     form = CommentForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
