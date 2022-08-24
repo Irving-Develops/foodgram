@@ -32,6 +32,8 @@ class User(db.Model, UserMixin):
     my_posts = db.relationship("Post", back_populates="owner")
     comments = db.relationship("Comment", back_populates="users")
     liker = db.relationship("Post", secondary=likes, back_populates="likes")
+    chatroom = db.relationship("Chatroom", back_populates="users")
+    messages = db.relationship("Message", back_populates="owner")
 
     followed = db.relationship(
     'User', secondary=followers,
@@ -133,4 +135,48 @@ class Comment(db.Model):
             'post_id': self.post_id,
             'created_at': self.created_at,
             'owner': self.users.to_dict()
+        }
+
+
+class Chatroom(db.Model):
+    __tablename__= "chatrooms"
+
+    id = db.Column(db.Integer, primary_key=True)
+    receiver_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+
+    # Relationships
+    users = db.relationship("User", back_populates='chatroom')
+    messages = db.relationship("Message", back_populates='chatroom', cascade="all, delete")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'receiver_id': self.receiver_id,
+            'created_at': self.created_at,
+            'messages': self.messages.to_dict(),
+            'users': self.users.to_dict()
+        }
+
+class Message(db.Model):
+    __tablename__ = "messages"
+
+    id = db.Column(db.Integer, primary_key=True)
+    message = db.Column(db.String(255), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    chatroom_id = db.Column(db.Integer, db.ForeignKey('chatrooms.id'))
+
+    # Relationships
+    owner = db.relationship("User", back_populates="messages")
+    chatroom = db.relationship("Chatroom", back_populates='messages')
+
+    def to_dict(self):
+        return {
+        'id': self.id,
+        'message': self.message,
+        'created_at': self.created_at,
+        'owner_id': self.owner_id,
+        'chatroom_id': self.chatroom_id,
+        'owner': self.users.to_dict()
         }

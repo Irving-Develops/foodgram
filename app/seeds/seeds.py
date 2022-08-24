@@ -1,4 +1,4 @@
-from app.models import db, User, Post, Comment, likes
+from app.models import db, User, Post, Comment, Chatroom, Message, likes
 
 
 # Adds a demo user, you can add other users here if you want
@@ -17,6 +17,14 @@ def seed_all():
     comment1 = Comment(comment_text="Those tacos are so good!", user_id=2, post_id=1)
     comment2 = Comment(comment_text="How long to get a reservation? I heard it was over two years!!", user_id=1, post_id=2)
     comment3 = Comment(comment_text="Where is this?", user_id=1, post_id=3)
+
+    chatroom1 = Chatroom(receiver_id=1)
+    chatroom2 = Chatroom(receiver_id=3)
+    
+    message1 = Message(message="hi", owner_id=2, chatroom_id=1)
+    message2 = Message(message="hi", owner_id=2, chatroom_id=2)
+    message3 = Message(message="hey demo, how's it going", owner_id=1, chatroom_id=1)
+    message4 = Message(message="whats up?", owner_id=3, chatroom_id=2)
 
     post1.likes.append(demo)
     post1.likes.append(marnie)
@@ -46,6 +54,12 @@ def seed_all():
     db.session.add(comment1)
     db.session.add(comment2)
     db.session.add(comment3)
+    db.session.add(chatroom1)
+    db.session.add(chatroom2)
+    db.session.add(message1)
+    db.session.add(message2)
+    db.session.add(message3)
+    db.session.add(message4)
     db.session.commit()
 
 
