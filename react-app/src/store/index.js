@@ -4,12 +4,14 @@ import session from './session'
 import posts from './posts'
 import comments from './comments'
 import users from './users'
+import chatrooms from './chatrooms'
 
 const rootReducer = combineReducers({
   session,
   posts,
   comments,
-  users
+  users,
+  chatrooms
 });
 
 

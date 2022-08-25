@@ -18,8 +18,8 @@ def seed_all():
     comment2 = Comment(comment_text="How long to get a reservation? I heard it was over two years!!", user_id=1, post_id=2)
     comment3 = Comment(comment_text="Where is this?", user_id=1, post_id=3)
 
-    chatroom1 = Chatroom(receiver_id=1)
-    chatroom2 = Chatroom(receiver_id=3)
+    chatroom1 = Chatroom(creator_id=2, receiver_id=1)
+    chatroom2 = Chatroom(creator_id=2, receiver_id=3)
     
     message1 = Message(message="hi", owner_id=2, chatroom_id=1)
     message2 = Message(message="hi", owner_id=2, chatroom_id=2)

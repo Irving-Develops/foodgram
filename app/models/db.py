@@ -32,8 +32,10 @@ class User(db.Model, UserMixin):
     my_posts = db.relationship("Post", back_populates="owner")
     comments = db.relationship("Comment", back_populates="users")
     liker = db.relationship("Post", secondary=likes, back_populates="likes")
-    chatroom = db.relationship("Chatroom", back_populates="users")
     messages = db.relationship("Message", back_populates="owner")
+
+    # chatroom = db.relationship("Chatroom", back_populates="users")
+
 
     followed = db.relationship(
     'User', secondary=followers,
@@ -142,20 +144,22 @@ class Chatroom(db.Model):
     __tablename__= "chatrooms"
 
     id = db.Column(db.Integer, primary_key=True)
-    receiver_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    creator_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    receiver_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     # Relationships
-    users = db.relationship("User", back_populates='chatroom')
+    # users = db.relationship("User", back_populates='chatroom')
     messages = db.relationship("Message", back_populates='chatroom', cascade="all, delete")
 
     def to_dict(self):
         return {
             'id': self.id,
+            'creator_id': self.creator_id,
             'receiver_id': self.receiver_id,
             'created_at': self.created_at,
-            'messages': self.messages.to_dict(),
-            'users': self.users.to_dict()
+            'messages': [message.to_dict() for message in self.messages],
+            # 'users': self.users.to_dict()
         }
 
 class Message(db.Model):
@@ -178,5 +182,5 @@ class Message(db.Model):
         'created_at': self.created_at,
         'owner_id': self.owner_id,
         'chatroom_id': self.chatroom_id,
-        'owner': self.users.to_dict()
+        'owner': self.owner.username
         }
