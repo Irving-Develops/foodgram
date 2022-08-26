@@ -2,41 +2,53 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessageThunk } from "../../store/messages";
 import { io } from 'socket.io-client';
+import classes from './Message.module.css'
+import {getMessagesThunk} from '../../store/messages'
 
 
 let socket;
 
-export default function CreateMessage({chatroomId, messageObj}) {
+export default function CreateMessage({chatroomId}) {
     const dispatch = useDispatch()
-
-    // const messageObj = useSelector(state => state.messages)
-    console.log(messageObj, "obj")
     const [message, setMessage] = useState("");
     const user = useSelector(state => state.session.user)
+    const messageObj = useSelector(state => state.messages)
+    const chatrooms = useSelector(state => state.chatrooms)
+
+    let chatroomUser;
+
+    if(chatroomId) {
+        chatroomUser = chatrooms[chatroomId].otherUser
+    }
+    console.log(chatroomUser, "THIS")
+
     
     let chatroomMessages;
     let formattedMsgs = []
     if(messageObj) {
         chatroomMessages = Object.values(messageObj).filter(message => message.chatroom_id === chatroomId)
-        chatroomMessages.map(msg => {
-            let data = { user: msg.owner, msg: msg.message }
-            formattedMsgs.push(data)
-        })
     }
+    // console.log(formattedMsgs, "formatted msgs")
 
     
-    const [messages, setMessages] = useState(formattedMsgs);
+    const [messages, setMessages] = useState(chatroomMessages);
 
-    console.log(messages, "messages on render")
     
     const updateMessage = (e) => {
         setMessage(e.target.value)
     };
 
     useEffect(() => {
-        setMessages(formattedMsgs)
+        if(chatroomId) {
+            dispatch(getMessagesThunk(chatroomId))
+        }
+    }, [dispatch, chatroomId])
+
+    useEffect(() => {
+        setMessages(chatroomMessages)
     }, [messageObj])
 
+    
     useEffect(() => {
         // open socket connection
         // create websocket
@@ -44,7 +56,7 @@ export default function CreateMessage({chatroomId, messageObj}) {
 
         socket.on("chat", (chat) => {
             // let x = messages.slice(0, messages.length - 2) 
-            if(messages && chat.user !== user.username) {
+            if(messages) {
                 setMessages(messages => [...messages, chat])
             }
         })
@@ -69,24 +81,34 @@ export default function CreateMessage({chatroomId, messageObj}) {
        let createdMsg = await dispatch(addMessageThunk(newMessage))
        
        if(createdMsg) {
-            let data = { user: createdMsg.owner, msg: createdMsg.message }
-            console.log(data, "data")
-            socket.emit("chat", data);
+            // let data = { user: createdMsg.owner, msg: createdMsg.message, sender: createdMsg.owner_id , id: createdMsg.id}
+            socket.emit("chat", createdMsg);
         }
         setMessage("")
     }
 
+    
+    console.log(messages, "msgs")
 
-    if(!messageObj) return null;
+    if(!messageObj || !chatroomUser) return null;
     return (
-        <div>
-            <div>
+        <div className={classes.chatContainer}>
+                <div className={classes.otherUsername}>
+                    <img src={chatroomUser.profile_pic} alt={chatroomUser.username}/>
+                    <p>{chatroomUser.username}</p>
+                </div>
                 {messages.length > 0 && messages.map((message, ind) => (
-                    <div key={ind}>{`${message.user}: ${message.msg}`}</div>
-                ))}
-            </div>
+                <div key={ind} className={classes.messageContainer}>
+                    {message.owner_id === user.id  ?
+                    <span className={classes.messageOwner}>{message.message}</span>
+                    :
+                    <span className={classes.otherUser}>{message.message}</span>
 
-            <form onSubmit={sendChat}>
+                }
+                </div>
+                ))}
+
+            <form onSubmit={sendChat} className={classes.createMessage}>
                 <input
                     value={message}
                     onChange={updateMessage}

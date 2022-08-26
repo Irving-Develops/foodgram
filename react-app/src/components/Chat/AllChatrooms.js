@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom"
 import { getChatroomsThunk } from "../../store/chatrooms"
 import { getUsersThunk } from "../../store/users"
 import TimeSince from "../../TimeSince"
-import Chat from './Chat'
+import CreateMessage from "../Messages/CreateMessage"
 import classes from './Chatroom.module.css'
 
 export default function Chatrooms(){
@@ -79,7 +79,7 @@ export default function Chatrooms(){
                     ))}
                 </div>
             </div>
-            <Chat chatroomId={chatroomId}/>
+            <CreateMessage chatroomId={chatroomId}/>
         </div>
     )
 }

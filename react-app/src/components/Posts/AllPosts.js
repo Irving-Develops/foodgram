@@ -7,7 +7,6 @@ import CreateComment from "../Comments/CreateComment"
 import PostOwner from "./PostOwner"
 import Likes from "../Likes/Likes"
 import './Posts.css'
-import Chat from "../Chat/Chat"
 
 function AllPosts(){
     const dispatch = useDispatch()

@@ -9,7 +9,6 @@ import { authenticate } from './store/session';
 import AllPosts from './components/Posts/AllPosts';
 import User from './components/User/User'
 import Search from './components/Search/search';
-import Chat from './components/Chat/Chat';
 import Chatrooms from './components/Chat/AllChatrooms';
 
 function App() {
@@ -49,6 +48,7 @@ function App() {
             <User />
         </ProtectedRoute>
         <ProtectedRoute path='/test' exact={true} >
+          <NavBar />
           <Chatrooms />
         </ProtectedRoute>
       </Switch>

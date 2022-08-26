@@ -1,0 +1,47 @@
+.chatContainer {
+    flex-grow: 1;
+    position: relative;
+}
+
+.otherUsername {
+    position: relative;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    top: 0;
+    border-bottom: var(--border);
+}
+
+.otherUsername img {
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.messageContainer {
+    display: flex;
+    margin: 5px 0;
+    flex-direction: column;
+
+}
+
+.messageOwner {
+    max-width: 234px;
+    overflow-wrap: break-word;
+    margin: 0 15px 0 auto;
+    border: var(--border);
+    background-color: var(--grey-bg);
+}
+
+.otherUser {
+    max-width: 234px;
+    overflow-wrap: break-word;
+    margin: 0 auto 0 15px;
+}
+
+.createMessage {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

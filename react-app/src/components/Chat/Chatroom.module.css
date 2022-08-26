@@ -5,13 +5,15 @@
     height: 100%;
     max-width: 935px;
     background-color: white;
+    border-radius: 5px;
     margin: 100px auto;
+    border: var(--border);
 }
 
 .usersContainer {
     width: 350px;
     min-height: 600px;
-    border: var(--border);
+    border-right: var(--border);
 }
 
 .sessionUser {
@@ -37,6 +39,7 @@
     width: 56px;
     height: 56px;
     object-fit: cover;
+    border-radius: 100%;
 }
 
 .lastMessage {
