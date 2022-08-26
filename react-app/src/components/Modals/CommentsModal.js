@@ -13,7 +13,6 @@ function CommentsModal({commentsArr, post}) {
                     <div id='post-owner'>
                         <PostUser post={post} />
                     </div>
-
                     <div className='comments-container'>
                             {commentsArr.slice(0).reverse().map(comment => 
                                 <CommentOwner key={comment.id} comment={comment} />

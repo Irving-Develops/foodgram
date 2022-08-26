@@ -13,6 +13,7 @@ from .api.post_routes import post_routes
 from .api.comment_routes import comment_routes
 from .api.like_routes import like_routes
 from .api.chatroom_routes import chatroom_routes
+from .api.message_routes import message_routes
 
 from .seeds import seed_commands
 
@@ -41,6 +42,7 @@ app.register_blueprint(post_routes, url_prefix='/api/posts')
 app.register_blueprint(comment_routes, url_prefix='/api/comments')
 app.register_blueprint(like_routes, url_prefix='/api/likes')
 app.register_blueprint(chatroom_routes, url_prefix='/api/chatrooms')
+app.register_blueprint(message_routes, url_prefix='/api/messages')
 db.init_app(app)
 Migrate(app, db)
 

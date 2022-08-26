@@ -5,13 +5,15 @@ import posts from './posts'
 import comments from './comments'
 import users from './users'
 import chatrooms from './chatrooms'
+import messages from './messages'
 
 const rootReducer = combineReducers({
   session,
   posts,
   comments,
   users,
-  chatrooms
+  chatrooms,
+  messages
 });
 
 

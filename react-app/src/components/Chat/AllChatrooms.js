@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from "react"
 import {useDispatch, useSelector} from 'react-redux'
+import { NavLink } from "react-router-dom"
 import { getChatroomsThunk } from "../../store/chatrooms"
 import { getUsersThunk } from "../../store/users"
 import TimeSince from "../../TimeSince"
+import Chat from './Chat'
 import classes from './Chatroom.module.css'
 
 export default function Chatrooms(){
@@ -10,6 +12,7 @@ export default function Chatrooms(){
     const sessionUser = useSelector(state => state.session.user)
     const chatrooms = useSelector(state => state.chatrooms)
     const users = useSelector(state => state.users)
+    const [chatroomId, setChatroomId] = useState(null)
     let myChatrooms;
     let myChatArray;
 
@@ -31,8 +34,6 @@ export default function Chatrooms(){
         })
     }
 
-    console.log(myChatArray)
-
     useEffect(() => {
         dispatch(getChatroomsThunk())
         dispatch(getUsersThunk())
@@ -41,7 +42,6 @@ export default function Chatrooms(){
     if(!myChatArray) return null
     return (
         <div className={classes.chatContainer}>
-
             <div className={classes.usersContainer}>
 
                 <div className={classes.sessionUser}>
@@ -53,24 +53,33 @@ export default function Chatrooms(){
                         
                         <div className={classes.eachUser} key={chatroom.id}>
                             {chatroom.otherUser ? 
-                            <div className={classes.userContainer}>
-                                <div className={classes.userImg}>
-                                    <img src={chatroom.otherUser.profile_pic} alt={chatroom.otherUser.username}/>
+                                <div className={classes.userContainer} onClick={() => {
+                                    setChatroomId(chatroom.id)
+                                }}>
+                                    <div className={classes.userImg}>
+                                        <img src={chatroom.otherUser.profile_pic} alt={chatroom.otherUser.username}/>
+                                    </div>
+                                    <div className={classes.msgDetails}>
+                                        <span>{chatroom.otherUser.username}</span>
+                                            {chatroom.messages[chatroom.messages.length - 1] ? 
+                                            <div className={classes.lastMessage}>
+                                                <span>{chatroom.messages[chatroom.messages.length - 1].message}</span>
+                                                <div className={classes.period}>&bull;</div>
+                                                <TimeSince date={chatroom.messages[chatroom.messages.length - 1].created_at} />
+                                            </div>
+                                            :
+                                            null
+                                            }
+                                    </div>
                                 </div>
-                                <div className={classes.msgDetails}>
-                                    <p>{chatroom.otherUser.username}</p>
-                                    <p>{chatroom.messages[chatroom.messages.length - 1].message}</p>
-                                    <TimeSince date={chatroom.messages[chatroom.messages.length - 1].created_at} />
-                                </div>
-                            </div>
                             :
                             <img src="static/loading.svg" alt="loading" />
                             }
                         </div>
                     ))}
                 </div>
-
             </div>
+            <Chat chatroomId={chatroomId}/>
         </div>
     )
 }
