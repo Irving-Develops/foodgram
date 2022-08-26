@@ -12,7 +12,7 @@ export default function CreateMessage({chatroomId, messageObj}) {
     // const messageObj = useSelector(state => state.messages)
     console.log(messageObj, "obj")
     const [message, setMessage] = useState("");
-    const user = useSelector(state => state.session.user.id)
+    const user = useSelector(state => state.session.user)
     
     let chatroomMessages;
     let formattedMsgs = []
@@ -43,7 +43,8 @@ export default function CreateMessage({chatroomId, messageObj}) {
         socket = io();
 
         socket.on("chat", (chat) => {
-            if(messages) {
+            // let x = messages.slice(0, messages.length - 2) 
+            if(messages && chat.user !== user.username) {
                 setMessages(messages => [...messages, chat])
             }
         })
@@ -62,13 +63,13 @@ export default function CreateMessage({chatroomId, messageObj}) {
         const newMessage = {
             message,
             chatroom_id: chatroomId,
-            owner_id: user,
+            owner_id: user.id,
         }
 
        let createdMsg = await dispatch(addMessageThunk(newMessage))
        
        if(createdMsg) {
-            let data = { user: createdMsg?.owner, msg: createdMsg?.message }
+            let data = { user: createdMsg.owner, msg: createdMsg.message }
             console.log(data, "data")
             socket.emit("chat", data);
         }
