@@ -33,9 +33,9 @@ export default function CreateMessage({chatroomId, messageObj}) {
         setMessage(e.target.value)
     };
 
-    // useEffect(() => {
-        // setMessages(formattedMsgs)
-    // }, [formattedMsgs])
+    useEffect(() => {
+        setMessages(formattedMsgs)
+    }, [messageObj])
 
     useEffect(() => {
         // open socket connection
