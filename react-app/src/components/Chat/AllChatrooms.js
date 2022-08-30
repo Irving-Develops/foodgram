@@ -2,9 +2,11 @@ import React, {useEffect, useState} from "react"
 import {useDispatch, useSelector} from 'react-redux'
 import { NavLink } from "react-router-dom"
 import { getChatroomsThunk } from "../../store/chatrooms"
+import { getMessagesThunk } from "../../store/messages"
 import { getUsersThunk } from "../../store/users"
 import TimeSince from "../../TimeSince"
 import CreateMessage from "../Messages/CreateMessage"
+import LastMessage from "../Messages/LastMessage"
 import classes from './Chatroom.module.css'
 
 export default function Chatrooms(){
@@ -13,6 +15,8 @@ export default function Chatrooms(){
     const chatrooms = useSelector(state => state.chatrooms)
     const users = useSelector(state => state.users)
     const [chatroomId, setChatroomId] = useState(null)
+    const [upToDate, setUpToDate] = useState(true)
+
     let myChatrooms;
     let myChatArray;
 
@@ -37,7 +41,8 @@ export default function Chatrooms(){
     useEffect(() => {
         dispatch(getChatroomsThunk())
         dispatch(getUsersThunk())
-    }, [dispatch])
+        setUpToDate(true)
+    }, [dispatch, upToDate])
 
     if(!myChatArray) return null
     return (
@@ -45,11 +50,11 @@ export default function Chatrooms(){
             <div className={classes.usersContainer}>
 
                 <div className={classes.sessionUser}>
-                    <p>{sessionUser.username}</p>
+                    <span>{sessionUser.username}</span>
                 </div>
 
                 <div className={classes.otherUsers}>
-                    {myChatArray.length > 0 && myChatArray.map(chatroom => (
+                    {upToDate && myChatArray.length > 0 && myChatArray.map(chatroom => (
                         
                         <div className={classes.eachUser} key={chatroom.id}>
                             {chatroom.otherUser ? 
@@ -64,10 +69,11 @@ export default function Chatrooms(){
                                             {chatroom.messages[chatroom.messages.length - 1] ? 
                                             <div className={classes.lastMessage}>
                                                 <span>{chatroom.messages[chatroom.messages.length - 1].message}</span>
+                                                {/* <LastMessage chatroomId={chatroom.id} /> */}
                                                 <div className={classes.period}>&bull;</div>
                                                 <TimeSince date={chatroom.messages[chatroom.messages.length - 1].created_at} />
                                             </div>
-                                            :
+                                             :
                                             null
                                             }
                                     </div>
@@ -79,7 +85,7 @@ export default function Chatrooms(){
                     ))}
                 </div>
             </div>
-            <CreateMessage chatroomId={chatroomId}/>
+            <CreateMessage chatroomId={chatroomId} setUpToDate={setUpToDate} />
         </div>
     )
 }

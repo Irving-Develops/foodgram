@@ -1,34 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessageThunk } from "../../store/messages";
 import { io } from 'socket.io-client';
 import classes from './Message.module.css'
 import {getMessagesThunk} from '../../store/messages'
+import { getChatroomsThunk } from "../../store/chatrooms";
 
 
 let socket;
 
-export default function CreateMessage({chatroomId}) {
+export default function CreateMessage({chatroomId, setUpToDate}) {
     const dispatch = useDispatch()
     const [message, setMessage] = useState("");
     const user = useSelector(state => state.session.user)
     const messageObj = useSelector(state => state.messages)
     const chatrooms = useSelector(state => state.chatrooms)
+    const messagesEndRef = useRef(null)
+
+
+    //scrolls to newest message
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+        console.log("firing")
+    }
+
+
 
     let chatroomUser;
 
     if(chatroomId) {
         chatroomUser = chatrooms[chatroomId].otherUser
     }
-    console.log(chatroomUser, "THIS")
 
     
     let chatroomMessages;
     let formattedMsgs = []
     if(messageObj) {
         chatroomMessages = Object.values(messageObj).filter(message => message.chatroom_id === chatroomId)
+        scrollToBottom()
     }
-    // console.log(formattedMsgs, "formatted msgs")
 
     
     const [messages, setMessages] = useState(chatroomMessages);
@@ -41,6 +51,8 @@ export default function CreateMessage({chatroomId}) {
     useEffect(() => {
         if(chatroomId) {
             dispatch(getMessagesThunk(chatroomId))
+            dispatch(getChatroomsThunk())
+
         }
     }, [dispatch, chatroomId])
 
@@ -48,6 +60,7 @@ export default function CreateMessage({chatroomId}) {
         setMessages(chatroomMessages)
     }, [messageObj])
 
+    useEffect(scrollToBottom, [messageObj]);
     
     useEffect(() => {
         // open socket connection
@@ -84,21 +97,22 @@ export default function CreateMessage({chatroomId}) {
             // let data = { user: createdMsg.owner, msg: createdMsg.message, sender: createdMsg.owner_id , id: createdMsg.id}
             socket.emit("chat", createdMsg);
         }
+        setUpToDate(false)
         setMessage("")
     }
 
-    
-    console.log(messages, "msgs")
 
-    if(!messageObj || !chatroomUser) return null;
+
+    if(!messageObj || !chatroomUser || !messagesEndRef) return null;
     return (
         <div className={classes.chatContainer}>
                 <div className={classes.otherUsername}>
                     <img src={chatroomUser.profile_pic} alt={chatroomUser.username}/>
                     <p>{chatroomUser.username}</p>
                 </div>
+                <div className={classes.messageContainer}>
                 {messages.length > 0 && messages.map((message, ind) => (
-                <div key={ind} className={classes.messageContainer}>
+                <div key={ind} className={classes.messageWrapper}>
                     {message.owner_id === user.id  ?
                     <span className={classes.messageOwner}>{message.message}</span>
                     :
@@ -107,14 +121,16 @@ export default function CreateMessage({chatroomId}) {
                 }
                 </div>
                 ))}
-
-            <form onSubmit={sendChat} className={classes.createMessage}>
-                <input
-                    value={message}
-                    onChange={updateMessage}
-                />
-                <button type="submit">Send</button>
-            </form>
+                <div  ref={messagesEndRef} />
+                </div>
+                <form onSubmit={sendChat} className={classes.createMessage}>
+                    <input
+                        value={message}
+                        onChange={updateMessage}
+                        placeholder="Message..."
+                    />
+                    <button type="submit">Send</button>
+                </form>
         </div>
     )
 }
