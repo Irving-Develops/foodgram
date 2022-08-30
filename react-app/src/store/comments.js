@@ -2,11 +2,17 @@ const GET_COMMENTS = 'comments/GET_COMMENTS'
 const ADD_COMMENT = 'comments/ADD_COMMENT'
 const EDIT_COMMENT = 'comments/EDIT_COMMENT'
 const DELETE_COMMENT = 'comments/DELETE_COMMENT'
+// const GET_COMMENTS_OF_POSTS ='comments/GET_COMMENTS_OF_POSTS'
 
 export const getComments = (comments) => ({
     type: GET_COMMENTS,
     comments
 })
+
+// export const getCommentsOfPost = (comments) => ({
+//     type: GET_COMMENTS_OF_POSTS,
+//     comments
+// })
 
 export const addComment = (comment) => ({
     type: ADD_COMMENT,
@@ -24,7 +30,19 @@ export const deleteComment = (comment) => ({
 })
 
 export const getCommentsThunk = () => async(dispatch) => {
-    const res = await fetch('/api/comments')
+    const res = await fetch(`/api/comments`)
+
+    if(res.ok) {
+        const data = await res.json()
+        dispatch(getComments(data.comments))
+    }else {
+      const err = await res.json();
+      throw err;
+    }
+}
+
+export const getCommentsOfPostsThunk = (postId) => async(dispatch) => {
+    const res = await fetch(`/api/comments/${postId}`)
 
     if(res.ok) {
         const data = await res.json()
@@ -75,9 +93,9 @@ export const deleteCommentThunk = (comment) => async (dispatch) => {
     method: 'DELETE',
   });
   if (response.ok) {
-    await response.json();
+    let data = await response.json();
     dispatch(deleteComment(comment));
-    return comment;
+    return data;
   }
   else {
     const err = await response.json();
@@ -91,6 +109,9 @@ export default function commentReducer(state = {}, action){
         case GET_COMMENTS:
             action.comments.forEach((comment) => newState[comment.id] = comment);
         return newState
+        // case GET_COMMENTS_OF_POSTS:
+        //     action.comments.forEach((comment) => newState[comment.id] = comment);
+        // return newState
         case ADD_COMMENT:
             newState[action.comment.id] = action.comment;
         return newState;

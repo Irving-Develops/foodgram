@@ -32,3 +32,11 @@ def add_message():
         return message.to_dict()
     return { 'errors' : validation_errors_to_error_messages(form.errors) }, 400
     
+
+# @message_routes.route('/<int:id>', methods=['DELETE'])
+# @login_required
+# def delete_message(id):
+#     message = Message.query.get(id)
+#     db.session.delete(message)
+#     db.session.commit()
+#     return message.to_dict()

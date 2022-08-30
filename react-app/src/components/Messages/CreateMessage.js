@@ -69,9 +69,13 @@ export default function CreateMessage({chatroomId, setUpToDate}) {
 
         socket.on("chat", (chat) => {
             // let x = messages.slice(0, messages.length - 2) 
-            if(messages) {
-                setMessages(messages => [...messages, chat])
-            }
+                if(chat.owner_id !== user.id) {
+                    setMessages(messages => [...messages, chat])
+                    scrollToBottom()
+                }else {
+                    setMessages(messages => [...messages])
+                    scrollToBottom()
+                }
         })
         // when component unmounts, disconnect
         return (() => {
@@ -92,6 +96,7 @@ export default function CreateMessage({chatroomId, setUpToDate}) {
         }
 
        let createdMsg = await dispatch(addMessageThunk(newMessage))
+       await dispatch(getMessagesThunk(chatroomId))
        
        if(createdMsg) {
             // let data = { user: createdMsg.owner, msg: createdMsg.message, sender: createdMsg.owner_id , id: createdMsg.id}

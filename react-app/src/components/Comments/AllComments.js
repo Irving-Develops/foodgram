@@ -6,7 +6,7 @@ import { Modal } from "../Context/Modal"
 import CommentsModal from "../Modals/CommentsModal"
 import CommentOwner from "./CommentOwner"
 
-function AllComments({post, isSvg, isOverlay}) {
+function AllComments({post, isSvg, isOverlay, postId}) {
     const dispatch = useDispatch()
     const comments = useSelector(state => state.comments)
     const sessionUser = useSelector(state => state.session.user.id)

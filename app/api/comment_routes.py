@@ -12,6 +12,12 @@ def get_comments():
     comments = Comment.query.all()
     return {'comments': [comment.to_dict() for comment in comments]}
 
+# @comment_routes.route("/<int:id>", methods=['GET'])
+# @login_required
+# def get_comments_of_posts(id):
+#     comments = Comment.query.filter(Comment.post_id == id).all()
+#     return {'comments': [comment.to_dict() for comment in comments]}
+
 
 @comment_routes.route("", methods=['POST'])
 @login_required

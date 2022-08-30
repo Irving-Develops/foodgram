@@ -59,6 +59,7 @@ export default function Chatrooms(){
                         <div className={classes.eachUser} key={chatroom.id}>
                             {chatroom.otherUser ? 
                                 <div className={classes.userContainer} onClick={() => {
+                                    setUpToDate(false)
                                     setChatroomId(chatroom.id)
                                 }}>
                                     <div className={classes.userImg}>
@@ -85,7 +86,7 @@ export default function Chatrooms(){
                     ))}
                 </div>
             </div>
-            <CreateMessage chatroomId={chatroomId} setUpToDate={setUpToDate} />
+            <CreateMessage chatroomId={chatroomId} setUpToDate={setUpToDate} upToDate={upToDate} />
         </div>
     )
 }
