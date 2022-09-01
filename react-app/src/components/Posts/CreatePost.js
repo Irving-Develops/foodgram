@@ -43,7 +43,7 @@ function CreatePost({setCreateModal}) {
         }
 
         
-        setCreateModal(false)
+        // setCreateModal(false)
         setCharCount(0)
         setIsDisabled(true)
         
