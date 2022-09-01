@@ -80,7 +80,8 @@
     margin: 15px;
 }
 
-.errors p{
+.errors p,
+.errors span{
     text-align: center;
 }
 
