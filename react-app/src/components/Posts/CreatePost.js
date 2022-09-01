@@ -43,6 +43,7 @@ function CreatePost({setCreateModal}) {
         setCreateModal(false)
         }catch (err) {
             setErrors(err.errors)
+            setImgUrl(null)
         }
 
         setCharCount(0)
