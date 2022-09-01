@@ -6,6 +6,15 @@
     overflow: scroll;
 }
 
+.comments-container-modal {
+    display: flex;
+    flex-direction: column;
+    height: 516px;
+    width: 100%;
+    margin-top: 5px;
+    overflow: scroll;
+}
+
 .comment-container {
     display: flex;
     flex-direction: column;
