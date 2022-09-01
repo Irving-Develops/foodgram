@@ -27,11 +27,12 @@ export const editUserThunk = (user) => async(dispatch) => {
   const {profile_pic} = user
   const formData = new FormData()
   formData.append('profile_pic', profile_pic)
-
+  
   const res = await fetch(`/api/users/${user.id}`, {
     method: 'PUT',
     body: formData
   })
+  console.log(res, "response")
 
   if(res.ok) {
     const user = await res.json();

@@ -19,16 +19,8 @@ socketio = SocketIO(cors_allowed_origins=origins)
 # handle chat messages
 @socketio.on("chat")
 def handle_chat(data):
-    print(data, "\n \n in socket \n \n")
     emit("chat", data, broadcast=True)
-    # message = Message(
-    #     message=data.message,
-    #     chatroom_id=data.chatroom_id,
-    #     owner_id=data.owner_id
-    # )
-    # print(message, "\n \n message in socket \n \n")
-    # db.session.add(message)
-    # db.session.commit()
+
 
 
 

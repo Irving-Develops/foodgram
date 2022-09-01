@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { followUserThunk, unfollowUserThunk } from "../../store/users"
+import CreateChatroom from "../Chat/CreateChatroom";
 
 
 
@@ -27,9 +28,12 @@ export default function Follow({user}) {
     return (
         <>
         {user.followers.includes(currentUser[0].id) ? 
-            <form onSubmit={handleSubmit}>
-                <button>Unfollow</button>
-            </form>
+            <>
+                <form onSubmit={handleSubmit}>
+                    <button>Unfollow</button>
+                </form>
+                <CreateChatroom user={user} />
+            </>
             :
             <form onSubmit={handleSubmit}>
                 <button>Follow</button>

@@ -47,7 +47,11 @@ function App() {
             <NavBar />
             <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/test' exact={true} >
+        <ProtectedRoute path='/messages' exact={true} >
+          <NavBar />
+          <Chatrooms />
+        </ProtectedRoute>
+        <ProtectedRoute path='/messages/:chatroomId' exact={true} >
           <NavBar />
           <Chatrooms />
         </ProtectedRoute>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux'
 import classes from './User.module.css'
 import { Modal } from '../Context/Modal';
@@ -13,6 +13,7 @@ function User() {
   const dispatch = useDispatch()
   const { userId }  = useParams();
   const [showEditModal, setEditModal] = useState(false)
+  const location = useLocation()
   const [showCommentModal2, setCommentModal2] = useState(false)
   const sessionUser = useSelector(state => state.session.user)
   const allUsers = useSelector(state => state.users)
@@ -58,9 +59,14 @@ function User() {
           null
           }
 
-          <div>
-            <p>Followers {user.followers.length}</p>
-            <p>Following {following}</p>
+          <div className={classes.userStats}>
+            { myPosts.length === 1 ?
+            <p><span>{myPosts.length} </span>post</p>
+            : 
+            <p><span>{myPosts.length} </span>posts</p>
+            }
+            <p><span>{user.followers.length} </span>follower</p>
+            <p><span>{following} </span>following</p>
           </div>
 
           {showEditModal && sessionUser.id === user.id &&  (
@@ -82,16 +88,6 @@ function User() {
               </div>
             </Modal>
           )}
-
-          <div className={classes.postNum}>
-            {myPosts.length === 0 ? 
-            <span>{myPosts.length} posts</span>
-            : myPosts.length === 1 ?
-            <span>{myPosts.length} post</span>
-            : 
-            <span>{myPosts.length} posts</span>
-            }
-          </div>
 
           <span>{user.full_name}</span>
 

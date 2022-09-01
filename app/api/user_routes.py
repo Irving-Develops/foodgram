@@ -24,6 +24,7 @@ def user(id):
 @user_routes.route("/<int:id>", methods=['PUT'])
 @login_required
 def edit_user(id):
+    print("INSIDE USER PUT ROUTE \n \n")
     user = User.query.get(id)
 
 

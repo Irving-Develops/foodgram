@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react"
 import {useDispatch, useSelector} from 'react-redux'
-import { NavLink } from "react-router-dom"
+import {useLocation, useHistory} from 'react-router-dom'
 import { getChatroomsThunk } from "../../store/chatrooms"
-import { getMessagesThunk } from "../../store/messages"
 import { getUsersThunk } from "../../store/users"
 import TimeSince from "../../TimeSince"
 import CreateMessage from "../Messages/CreateMessage"
@@ -11,14 +10,23 @@ import classes from './Chatroom.module.css'
 
 export default function Chatrooms(){
     const dispatch = useDispatch()
+    const location = useLocation()
+    const history = useHistory()
     const sessionUser = useSelector(state => state.session.user)
     const chatrooms = useSelector(state => state.chatrooms)
     const users = useSelector(state => state.users)
     const [chatroomId, setChatroomId] = useState(null)
     const [upToDate, setUpToDate] = useState(true)
+    const [id, setId] = useState(parseInt(location.pathname.split('/')[2]))
+    console.log(id, "id")
 
     let myChatrooms;
     let myChatArray;
+
+     
+
+    console.log(typeof(id))
+    
 
     if(chatrooms){
         myChatrooms = Object.values(chatrooms).filter(room => {
@@ -61,6 +69,7 @@ export default function Chatrooms(){
                                 <div className={classes.userContainer} onClick={() => {
                                     setUpToDate(false)
                                     setChatroomId(chatroom.id)
+                                    setId(chatroom.id)
                                 }}>
                                     <div className={classes.userImg}>
                                         <img src={chatroom.otherUser.profile_pic} alt={chatroom.otherUser.username}/>
@@ -86,7 +95,11 @@ export default function Chatrooms(){
                     ))}
                 </div>
             </div>
-            <CreateMessage chatroomId={chatroomId} setUpToDate={setUpToDate} upToDate={upToDate} />
+            {id && id.length === 3 ? 
+            <CreateMessage chatroomId={id[2]} setUpToDate={setUpToDate} upToDate={upToDate} />
+            :
+            <CreateMessage chatroomId={id} setUpToDate={setUpToDate} upToDate={upToDate} />
+        }
         </div>
     )
 }

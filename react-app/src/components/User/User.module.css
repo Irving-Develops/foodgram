@@ -30,9 +30,9 @@
     justify-content: center;
     width: 291px;
 }
-.postNum {
+/* .postNum {
     margin-bottom: 20px;
-}
+} */
 
 .postNum span{
     font-weight: 400;
@@ -87,6 +87,12 @@
     border-radius: 3px;
 }
 
+.userStats {
+    display: flex;
+    gap: 30px;
+}
+
+
 .modalContainer {
     display: flex;
     flex-direction: column;
@@ -134,4 +140,8 @@
     margin: auto auto 50px auto;
     align-items: center;
     justify-content: center;
+}
+
+.detailsWrapper {
+    flex-grow: 1;
 }

@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useRef} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addMessageThunk } from "../../store/messages";
+import { addMessageThunk, deleteMessageThunk } from "../../store/messages";
 import { io } from 'socket.io-client';
 import classes from './Message.module.css'
 import {getMessagesThunk} from '../../store/messages'
 import { getChatroomsThunk } from "../../store/chatrooms";
+// import {deleteMessageThunk } from "../../store/messages";
+
+import DeleteMessage from "./DeleteMessage";
 
 
 let socket;
@@ -17,10 +20,13 @@ export default function CreateMessage({chatroomId, setUpToDate}) {
     const chatrooms = useSelector(state => state.chatrooms)
     const messagesEndRef = useRef(null)
 
+    console.log(chatrooms, chatroomId, "chatroomId")
+    
+
 
     //scrolls to newest message
     const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+        messagesEndRef.current?.scrollIntoView({ behavior: "auto" })
         console.log("firing")
     }
 
@@ -28,7 +34,7 @@ export default function CreateMessage({chatroomId, setUpToDate}) {
 
     let chatroomUser;
 
-    if(chatroomId) {
+    if(chatroomId && chatrooms) {
         chatroomUser = chatrooms[chatroomId].otherUser
     }
 
@@ -106,9 +112,14 @@ export default function CreateMessage({chatroomId, setUpToDate}) {
         setMessage("")
     }
 
+    // const handleDelete = async(message) => {
+    //     let deletedMessage = await dispatch(deleteMessageThunk(message))
+    //     await dispatch(getMessagesThunk(chatroomId))
+    // }
 
 
-    if(!messageObj || !chatroomUser || !messagesEndRef) return null;
+
+    if(!messageObj || !chatroomUser || !messagesEndRef || !chatrooms) return null;
     return (
         <div className={classes.chatContainer}>
                 <div className={classes.otherUsername}>
