@@ -58,7 +58,7 @@ function CreatePost({setCreateModal}) {
             </div>
             {errors ?
                 <div className="errors">
-                    <span>{errors}</span>
+                    <p>{errors}</p>
                 </div>
                 :
                 null
