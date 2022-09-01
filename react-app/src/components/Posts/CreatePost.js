@@ -42,7 +42,7 @@ function CreatePost({setCreateModal}) {
 
         }catch (err) {
             setErrors(err.errors)
-            alert(`${errors}`)
+            alert(`Post was not created because ${errors}`)
         }
 
         setCreateModal(false)
