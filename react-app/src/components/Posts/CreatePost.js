@@ -37,17 +37,18 @@ function CreatePost({setCreateModal}) {
         if (Date.now() - lastClicked < 4000) return;
         lastClicked = Date.now()
 
-            await dispatch(addPostThunk(post))
+            let data = await dispatch(addPostThunk(post))
         }catch (err) {
             setErrors(err.errors)
         }
 
-
+        
         setCreateModal(false)
         setCharCount(0)
         setIsDisabled(true)
-
+        
     }
+    console.log(errors)
 
     return (
         <form onSubmit={handleSubmit} id={isDisabled ? "disabled" : "notDisabled"} className="create-post-form">
