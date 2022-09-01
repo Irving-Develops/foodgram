@@ -10,7 +10,7 @@ function CreatePost({setCreateModal}) {
     const [caption, setCaption] = useState('')
     const [charCount, setCharCount] = useState(0)
     const [isDisabled, setIsDisabled] = useState(false)
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState()
 
     let lastClicked = 0
 
@@ -29,7 +29,7 @@ function CreatePost({setCreateModal}) {
     const handleSubmit = async(e) => {
         try {
         e.preventDefault()
-        setErrors([])
+        setErrors(null)
 
         const post = {
             img_url,
@@ -38,12 +38,13 @@ function CreatePost({setCreateModal}) {
         if (Date.now() - lastClicked < 4000) return;
         lastClicked = Date.now()
 
-            let data = await dispatch(addPostThunk(post))
+        let data = await dispatch(addPostThunk(post))
+
         }catch (err) {
             setErrors(err.errors)
         }
 
-        if(errors.length === 0) {
+        if(!errors) {
             setCreateModal(false)
         }
 
