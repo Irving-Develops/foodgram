@@ -44,10 +44,11 @@ function CreatePost({setCreateModal}) {
             setErrors(err.errors)
         }
 
-        if(!errors) {
-            setCreateModal(false)
-        }
+        // if(!errors) {
+        //     setCreateModal(false)
+        // }
 
+        console.log(errors, "in post")
         setCharCount(0)
         setIsDisabled(true)
         
