@@ -49,9 +49,13 @@
     color: var(--disabled);
 }
 
-.errors {
+.errors{
     font-size: 12px;
     padding: 9px 0 7px 8px;
+    color: red;
+}
+.errorsPost {
+    font-size: 12px;
     color: red;
 }
 
