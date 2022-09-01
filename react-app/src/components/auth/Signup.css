@@ -85,6 +85,10 @@
     text-align: center;
 }
 
+.errorsPost p{
+    margin: 0;
+}
+
 .input {
     display: flex;
     flex-direction: column;
