@@ -27,6 +27,7 @@ function CreatePost({setCreateModal}) {
     }
 
     const handleSubmit = async(e) => {
+        try {
         e.preventDefault()
 
         const post = {
@@ -36,7 +37,6 @@ function CreatePost({setCreateModal}) {
         if (Date.now() - lastClicked < 4000) return;
         lastClicked = Date.now()
 
-        try {
             await dispatch(addPostThunk(post))
         }catch (err) {
             setErrors(err.errors)
