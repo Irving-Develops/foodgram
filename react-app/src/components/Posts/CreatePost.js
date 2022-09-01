@@ -40,12 +40,11 @@ function CreatePost({setCreateModal}) {
 
         let data = await dispatch(addPostThunk(post))
 
+        setCreateModal(false)
         }catch (err) {
             setErrors(err.errors)
-            alert(`Post was not created because ${errors}`)
         }
 
-        setCreateModal(false)
         setCharCount(0)
         setIsDisabled(true)
         
