@@ -35,7 +35,7 @@
 
 #comment-text {
     font-size: 14px;
-    margin-bottom: 15px;
+    margin: 0 15px 15px 0;
     word-break: break-all;
 }
 #main-line a {
