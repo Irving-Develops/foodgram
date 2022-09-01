@@ -46,10 +46,9 @@ function CreatePost({setCreateModal}) {
         }
 
         setCharCount(0)
-        setIsDisabled(true)
+        // setIsDisabled(true)
         
     }
-    console.log(errors)
 
     return (
         <form onSubmit={handleSubmit} id={isDisabled ? "disabled" : "notDisabled"} className="create-post-form">
