@@ -12,7 +12,7 @@ export default function CreateChatroom({user}) {
     const [chatroomExists, setChatroomExists] = useState(false)
     let chatroomArr;
     if(chatrooms) {
-        chatroomArr = Object.values(chatrooms).filter(chatroom => (chatroom.creator_id === sessionUser.id || chatroom.receiver_id === sessionUser.id) && (chatroom.receiver_id === user.id || chatroom.creator_id === useStore.id))
+        chatroomArr = Object.values(chatrooms).filter(chatroom => (chatroom.creator_id === sessionUser.id || chatroom.receiver_id === sessionUser.id) && (chatroom.receiver_id === user.id || chatroom.creator_id === user.id))
     }
 
     console.log(chatroomArr, "array")
@@ -35,7 +35,6 @@ export default function CreateChatroom({user}) {
             history.push(`/messages/${chatroomArr[0].id}`)
         }else {
             let data = await dispatch(addChatroomThunk(chatroom))
-            console.log(data, "data in create")
             history.push(`/messages/${data.id}`)
         }
 

@@ -33,7 +33,7 @@ export default function Likes({post}){
         }
     }
 
-
+    if(!post.likes) return null
     return (
         <div className={classes.likesContainer}>
             {/* <button onClick={handleLike}>Like</button> */}

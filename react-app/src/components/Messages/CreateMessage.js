@@ -20,7 +20,7 @@ export default function CreateMessage({chatroomId, setUpToDate}) {
     const chatrooms = useSelector(state => state.chatrooms)
     const messagesEndRef = useRef(null)
 
-    console.log(chatrooms, chatroomId, "chatroomId")
+    console.log(chatrooms, "chatrooms")
     
 
 
@@ -31,11 +31,10 @@ export default function CreateMessage({chatroomId, setUpToDate}) {
     }
 
 
-
     let chatroomUser;
 
     if(chatroomId && chatrooms) {
-        chatroomUser = chatrooms[chatroomId].otherUser
+        chatroomUser = chatrooms[chatroomId]?.otherUser
     }
 
     
@@ -56,8 +55,8 @@ export default function CreateMessage({chatroomId, setUpToDate}) {
 
     useEffect(() => {
         if(chatroomId) {
-            dispatch(getMessagesThunk(chatroomId))
             dispatch(getChatroomsThunk())
+            dispatch(getMessagesThunk(chatroomId))
 
         }
     }, [dispatch, chatroomId])

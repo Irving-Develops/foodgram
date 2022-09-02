@@ -25,7 +25,7 @@ export default function Chatrooms(){
 
      
 
-    console.log(typeof(id))
+    console.log(id)
     
 
     if(chatrooms){
@@ -68,8 +68,8 @@ export default function Chatrooms(){
                             {chatroom.otherUser ? 
                                 <div className={classes.userContainer} onClick={() => {
                                     setUpToDate(false)
-                                    setChatroomId(chatroom.id)
                                     setId(chatroom.id)
+                                    history.push(`/messages/${chatroom.id}`)
                                 }}>
                                     <div className={classes.userImg}>
                                         <img src={chatroom.otherUser.profile_pic} alt={chatroom.otherUser.username}/>
@@ -89,14 +89,15 @@ export default function Chatrooms(){
                                     </div>
                                 </div>
                             :
-                            <img src="static/loading.svg" alt="loading" />
+                            <img src="/static/loading.svg" alt="loading" />
                             }
                         </div>
                     ))}
                 </div>
             </div>
-            {id && id.length === 3 ? 
-            <CreateMessage chatroomId={id[2]} setUpToDate={setUpToDate} upToDate={upToDate} />
+            {id && id.length === 3 ?
+            // <CreateMessage chatroomId={id[2]} setUpToDate={setUpToDate} upToDate={upToDate} />
+            null
             :
             <CreateMessage chatroomId={id} setUpToDate={setUpToDate} upToDate={upToDate} />
         }
