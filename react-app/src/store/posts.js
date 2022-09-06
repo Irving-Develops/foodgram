@@ -41,11 +41,15 @@ export const addPostThunk = (post) => async(dispatch) => {
     const formData = new FormData()
     formData.append('img_url', img_url)
     formData.append('caption', caption)
+
+    console.log(Object.values(formData), "formdata inside thunk")
     
     const res = await fetch('/api/posts', {
         method: "POST",
         body: formData
     });
+
+    console.log(res, "body in thunk")
     
     if (res.ok) {
         const post = await res.json();
