@@ -134,7 +134,7 @@ The following instructions detail an *optional* development setup for M1 Mac use
 
    ```bash
    flask run
-   ```
+   ``` 
 
 9. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
